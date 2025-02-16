@@ -52,42 +52,16 @@
         .menu.active {
             transform: translateY(0);
         }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            margin: auto;
+        .placeholder-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
         }
-        .product {
-            background: #f5f3ef;
-            padding: 15px;
-            border-radius: 10px;
-        }
-        .product img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .product-name {
-            margin-top: 10px;
-            font-weight: 500;
-        }
-        .buy-button {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 10px 20px;
-            background: #e0d6c8;
-            color: black;
+        .placeholder-text {
+            font-size: 1.2em;
+            text-transform: none;
             font-weight: 400;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-        .buy-button:hover {
-            background: #d0b79d;
         }
         footer {
             background: #ccc;
@@ -109,22 +83,8 @@
         <a href="https://ben2125-github.github.io/help.html">HELP</a>
     </div>
     <h1>BENPSTOKERSTORE</h1>
-    <div class="grid-container">
-        <div class="product">
-            <img src="https://rlv.zcache.com/bps25_grn_hoodie-r1164f38807e44d9195a1588d82a51908_j1hbw_644.jpg" alt="BPS25-GRN HOODIE">
-            <div class="product-name">BPS25-GRN HOODIE</div>
-            <a href="https://www.zazzle.com/bps25_grn_hoodie-256190157420305014?rf=238723017662043945&tc=nifty_product_html_generator_02152025" class="buy-button" rel="nofollow">BUY</a>
-        </div>
-        <div class="product">
-            <img src="https://rlv.zcache.com/bps25_gry_hoodie-rafed9ce4c6e6426dbb49078a1764fdfd_bzj73_644.jpg" alt="BPS25-GRY HOODIE">
-            <div class="product-name">BPS25-GRY HOODIE</div>
-            <a href="https://www.zazzle.com/bps25_gry_hoodie-256563337467095253?rf=238723017662043945&tc=nifty_product_html_generator_02152025" class="buy-button" rel="nofollow">BUY</a>
-        </div>
-        <div class="product">
-            <img src="https://rlv.zcache.com/rnbw_wht_hoodie-r071529cf8eaa4049b44499b84da25068_jg5ax_644.jpg" alt="RNBW-WHT HOODIE">
-            <div class="product-name">RNBW-WHT HOODIE</div>
-            <a href="https://www.zazzle.com/rnbw_wht_hoodie-256256397290902649?rf=238723017662043945&tc=nifty_product_html_generator_02152025" class="buy-button" rel="nofollow">BUY</a>
-        </div>
+    <div class="placeholder-container">
+        <div class="placeholder-text">COMING SOON</div>
     </div>
     <footer>
         &copy; 2025 BENPSTOKERSTORE. All rights reserved.
