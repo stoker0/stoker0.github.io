@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BENPSTOKERSTORE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fira Mono', monospace;
+            background-color: #f5f3ef;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 60px 0 20px;
+            font-weight: 500;
+        }
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 200;
+        }
+        .menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateY(-100%);
+            transition: transform 0.5s ease-in-out;
+            z-index: 150;
+        }
+        .menu a {
+            color: white;
+            text-decoration: none;
+            font-size: 2em;
+            margin: 10px 0;
+        }
+        .menu.active {
+            transform: translateY(0);
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+            gap: 40px;
+        }
+        .carousel {
+            position: relative;
+            width: 50%;
+            max-width: 500px;
+        }
+        .carousel img {
+            width: 100%;
+            border-radius: 10px;
+            opacity: 1;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2em;
+            cursor: pointer;
+            color: black;
+            user-select: none;
+        }
+        .prev { left: 10px; }
+        .next { right: 10px; }
+        .product-info {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .product-info h2 {
+            font-weight: 500;
+        }
+        .size-picker {
+            display: flex;
+            gap: 10px;
+            margin: 5px 0;
+        }
+        .size-button {
+            padding: 10px 20px;
+            background: #e0d6c8;
+            color: black;
+            font-weight: 400;
+            font-family: 'Fira Mono', monospace;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .size-button:hover, .size-button.selected {
+            background: #d0b79d;
+        }
+        .help-text {
+            color: gray;
+            font-size: 0.8em;
+            margin-top: 25px;
+        }
+        .help-text a {
+            color: gray;
+            text-decoration: underline;
+        }
+        .help-text a:hover {
+            color: #555;
+        }
+        .buy-button {
+            display: block;
+            width: 75%;
+            padding: 15px;
+            background: #b5aea5;
+            color: #777;
+            font-weight: 500;
+            border: none;
+            border-radius: 5px;
+            cursor: not-allowed;
+            text-decoration: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 1.2em;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .buy-button.active {
+            background: #e0d6c8;
+            color: black;
+            cursor: pointer;
+        }
+        .buy-button.active:hover {
+            background: #d0b79d;
+        }
+        footer {
+            background: #ccc;
+            padding: 10px;
+            text-transform: none;
+            font-weight: 500;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        @media (max-width: 800px) {
+            .container {
+                flex-direction: column;
+            }
+            .carousel, .product-info {
+                width: 90%;
+            }
+            body {
+                padding-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="menu" id="menu">
+        <div class="menu-toggle" onclick="toggleMenu()">✕</div>
+        <a href="https://ben2125-github.github.io/sites/store/buy.html">STORE</a>
+        <a href="https://ben2125-github.github.io/sites/store/about.html">ABOUT</a>
+        <a href="https://ben2125-github.github.io/sites/store/help.html">HELP</a>
+    </div>
+    <h1>BENPSTOKERSTORE</h1>
+    <div class="container">
+        <div class="carousel">
+            <img id="carousel-image" src="https://rlv.zcache.com/rnbw_wht_hoodie-r071529cf8eaa4049b44499b84da25068_jg5ax_644.jpg" alt="RNBW-WHT HOODIE">
+            <div class="arrow prev" onclick="prevImage()">&#10094;</div>
+            <div class="arrow next" onclick="nextImage()">&#10095;</div>
+        </div>
+        <div class="product-info">
+            <h2>RNBW-WHT HOODIE</h2>
+            <div class="size-picker">
+                <button class="size-button" onclick="setSize('S', this)">S</button>
+                <button class="size-button" onclick="setSize('M', this)">M</button>
+                <button class="size-button" onclick="setSize('L', this)">L</button>
+                <button class="size-button" onclick="setSize('XL', this)">XL</button>
+            </div>
+            <a id="buy-button" class="buy-button">ADD TO CART</a>
+            <p class="help-text">IF YOU HAVE QUESTIONS OR NEED A DIFFERENT SIZE EMAIL <a href="mailto:benpstokerbeats@icloud.com">benpstokerbeats@icloud.com</a></p>
+        </div>
+    </div>
+    <footer>
+        &copy; 2025 BENPSTOKERBEATS / ALL RIGHTS RESERVED
+    </footer>
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('menu');
+            menu.classList.toggle('active');
+        }
+
+        const images = [
+            "https://rlv.zcache.com/rnbw_wht_hoodie-r071529cf8eaa4049b44499b84da25068_jg5ax_644.jpg", 
+            "https://rlv.zcache.com/rnbw_wht_hoodie-r071529cf8eaa4049b44499b84da25068_jg5aw_644.jpg"
+        ];
+        let currentImage = 0;
+
+        function showImage(index) {
+            const imgElement = document.getElementById('carousel-image');
+            imgElement.style.opacity = 0;
+            setTimeout(() => {
+                imgElement.src = images[index];
+                imgElement.style.opacity = 1;
+            }, 200);
+        }
+
+        function prevImage() {
+            currentImage = (currentImage === 0) ? images.length - 1 : currentImage - 1;
+            showImage(currentImage);
+        }
+
+        function nextImage() {
+            currentImage = (currentImage === images.length - 1) ? 0 : currentImage + 1;
+            showImage(currentImage);
+        }
+
+        const sizeLinks = {
+            "S": "https://ablink.tn.send.zazzle.com/ss/c/u001.8WojYkNsK_33GApsWQUJ0Gy9y4GN3yIxwkCKP9bGJxqmoaVFnsfjXevu4A_rYOaYE2-9WzlL1LCNAfuDYYHmdxFENIUWnXmuGXxfnomkofmppeX6d_5NoYsXWoHvw5sjUB8rVudrYualPhjMVfZzQBHsOxrSfNDu6nng6sxYW3b3RkKwgh3mZLNJUyjDybTjzbiSxowcdrr9oh-dsXGb4xTENcPzVK7MQS2FiujvslPYnjVppX5uQ7DxJwDvl6Ttx1YAaYZtiP38EQYjr5ejSpudMlgZcakKABkQyTZHBItskfEXjEPI2cJVhum_MmeUlQqkoSZnGESYVZb9S3sdlYyvRcfgShdHztLiv-KplZtPB7_xyZOfoDtWkeiKnD3CkkpX1_KJOFQelaw2yeah1MmU7xgO6Bsi9eWV-4dO07trvJN9PcMFGEQhfxk5TeLk2YC9D1zaBFtPGTQZufx8Ug/4e2/NAO99vCkRca0AxncEEUukw/h17/h001.uzwx4YgoLwpOiJppcETcUXJ9sJhC6y6On2TBwobmLxA",
+            "M": "https://ablink.tn.send.zazzle.com/ss/c/u001.8WojYkNsK_33GApsWQUJ0Gy9y4GN3yIxwkCKP9bGJxqmoaVFnsfjXevu4A_rYOaYf5jFGKJ1ixYcMqWTwi2gZmWb8PrTYmauHE7bcpSeZETtY-7KpKhwVgjFxTemBjNisAQAopIGyCrt98Gpo2YhZBqz54BmvAeIKsmaie99YNb7tMtEbP8oMU6ENNR8rsyrHkzNhgvfhMx72SyCjqnsh7vyUsmUdcXgJxk1Ow3qgjsYX2bgT37al3A8c31jENnmVcbZYAoXbBYfuHqlDpZL-vjiAl_bkbmUfFJS3foXoemxX07EVLo7afyg0Kxnc3GIAmiasqTvQJrvSAV_1WhZtFZ3sUA66w6gQr6EDH2J0RGaBAuYOnRoCLgQ6NVofO8K3jwh0au7VHkBdQwLQ93NGsoKkcW2XJkEkqSBtx-x8tMbHv1tImMVKWU2W6koCUwEnrik-em78HjV9b2T7AgIYw/4e2/N5LwELlUS6yhalgkz7AAnw/h17/h001.aC3NsB9pWxNSz9ZVNIhHoOWnSdfxdImbNj8oXA3gxa8",
+            "L": "https://ablink.tn.send.zazzle.com/ss/c/u001.8WojYkNsK_33GApsWQUJ0Gy9y4GN3yIxwkCKP9bGJxqmoaVFnsfjXevu4A_rYOaYcZ9C1fbv9EvfGFfflxBSlAVTCOiMBj8o8jbZb75KyhZItYgnOiNIRbiexJc83gcLKsLL0xZZyCbCRMgKy5UB3IJnulrOHRQTbByaP5CS838t51zZpBQ-f4x-WjSX53gB7ds-04_YP797FAashqU47Bq0j2qh8Abg0QutsYaFivTWAwCACak6oz5k5eimUWXVlP8_iOZwwmPhUCdhWQqkIqydBjJKPseDZQGCzDX8ArMlshZKDk36TMPnYyjfNTrf-A5qoOwex5DxQnhIYxzTTwkchMdGGycdt0Q2q9W278w6ATaMABcAzYhDcVqL-FNNjflKM5QfCgXlpBfIDnVS1vw-GYQm6WHMJt2Wn9JYUtzA8j5Z0oLPWwXI8e5OPYeyPTq_Z70KCHUB67NJV6qfgw/4e2/cksExqA7T0K1ojz7Q2zIVg/h17/h001._AsSS6dmtQM9Y129nC5m6S8UX93Lu31iffb_EcsjOuY",
+            "XL": "https://ablink.tn.send.zazzle.com/ss/c/u001.8WojYkNsK_33GApsWQUJ0Gy9y4GN3yIxwkCKP9bGJxqmoaVFnsfjXevu4A_rYOaYE0RcomXqNMMn8tq0xWEGto7eXtV6UGO_AXg7wnPVH_Qs5TUg8HZmNutDLg5p7Ee7iFIN7aepECLYpqofia80gvhYcZhCIMYp5d6TS_2cPwWFQ3gCoLNwz2g_E_cM2U4H47-2P35FdF4_7nADLzFfSiP-7KAHPZS5CiZy7DtRWJFI0Ib9JmD7YV6wyYO_rlJaibGV84c6y1bl69AaEXUiMQMWrsYKJtwS_Moj3eRRqYhuPFBLVRhRYlm_dKvANrICukh5QaP6ZjMMrAUMdtu-7AuY7EqpCWkbDD7lHFr9cMvuFIROu5A_XjCkoWR56_bmr0elNjEQXvVqNpovFKaQCcIXrAvySe07LQkz2G7w3XPCDZEILXUu94OIFkRRW9knHJgsZ1AvWuM0endtnyHVbA/4e2/VE6rlct7TbmFBBKnDTzAjw/h17/h001.T-JNsMHT5oafNlB3pSefCNXmxHVNZrfEB_V2_dsrjEI"
+        };
+
+        function setSize(size, button) {
+            document.getElementById("buy-button").href = sizeLinks[size];
+            document.getElementById("buy-button").classList.add("active");
+            document.getElementById("buy-button").style.cursor = "pointer";
+            
+            document.querySelectorAll('.size-button').forEach(btn => btn.classList.remove('selected'));
+            button.classList.add('selected');
+        }
+    </script>
+</body>
+</html>
