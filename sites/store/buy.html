@@ -6,6 +6,12 @@
     <title>BENPSTOKERSTORE</title>
     <link rel="icon" href="/sites/store/assets/favicon.ico" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="manifest" href="/sites/store/manifest.json">
+    <meta name="theme-color" content="#f5f3ef">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="BENPSTOKERSTORE">
+    <link rel="apple-touch-icon" href="/sites/store/icons/icon-192.png">
     <style>
         body {
             font-family: 'Fira Mono', monospace;
@@ -154,6 +160,14 @@
         function toggleMenu() {
             const menu = document.getElementById('menu');
             menu.classList.toggle('active');
+        }
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sites/store/sw.js')
+                .then(function(reg) {
+                    console.log('Service Worker registered.', reg);
+                }).catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
         }
     </script>
 </body>
