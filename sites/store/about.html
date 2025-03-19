@@ -79,7 +79,7 @@
             text-transform: none;
             font-weight: 500;
         }
-        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+        @media (display-mode: standalone) {
             footer {
                 padding-bottom: calc(20px + env(safe-area-inset-bottom));
             }
