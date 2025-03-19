@@ -73,12 +73,16 @@
         footer {
             background: #ccc;
             padding: 10px;
-            padding-bottom: calc(10px + env(safe-area-inset-bottom));
             position: fixed;
             width: 100%;
             bottom: 0;
             text-transform: none;
             font-weight: 500;
+        }
+        @supports (padding-bottom: env(safe-area-inset-bottom)) {
+            footer {
+                padding-bottom: calc(30px + env(safe-area-inset-bottom));
+            }
         }
         @media (max-width: 800px) {
             .menu-toggle {
