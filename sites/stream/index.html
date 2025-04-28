@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stream Music Free - benpstokerbeats Streaming</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+    :root {
+      --bg-color: #f0f0f5;
+      --text-color: #333;
+      --album-bg: #ffffff;
+      --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      --footer-color: #777;
+      --modal-bg: #ffffff;
+      --input-bg: #f9f9f9;
+      --input-text: #333;
+      --button-bg: #4CAF50;
+      --button-text: #fff;
+      --select-bg: #f0f0f5;
+      --select-text: #333;
+      --progress-bg: #ddd;
+      --progress-fill: #4CAF50;
+      --play-button-bg: #4CAF50;
+      --play-button-hover-bg: #45a049;
+    }
+
+    [data-theme='dark'] {
+      --bg-color: #121212;
+      --text-color: #f0f0f5;
+      --album-bg: #1e1e1e;
+      --box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+      --footer-color: #aaa;
+      --modal-bg: #1e1e1e;
+      --input-bg: #2a2a2a;
+      --input-text: #f0f0f5;
+      --button-bg: #388e3c;
+      --button-text: #fff;
+      --select-bg: #2a2a2a;
+      --select-text: #f0f0f5;
+      --progress-bg: #444;
+      --progress-fill: #388e3c;
+      --play-button-bg: #388e3c;
+      --play-button-hover-bg: #2e7d32;
+    }
+
+    body {
+      display: flex;
+      min-height: 100vh;
+      margin: 0;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 300px;
+      background: var(--album-bg);
+      box-shadow: var(--box-shadow);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .main-content {
+      margin-left: 315px;
+      flex: 1;
+      padding: 30px;
+      overflow-y: auto;
+    }
+    .album {
+      background: var(--album-bg);
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      box-shadow: var(--box-shadow);
+      text-align: center;
+    }
+    header {
+      margin-bottom: 30px;
+    }
+    footer {
+      margin-top: 50px;
+      text-align: center;
+      color: var(--footer-color);
+    }
+    .theme-select {
+      margin-top: 20px;
+    }
+
+    select {
+      appearance: none;
+      background: var(--select-bg);
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 10px;
+      width: 100%;
+      font-family: 'Inter', Arial, sans-serif;
+      color: var(--select-text);
+    }
+    #login-modal {
+      background: rgba(0,0,0,0.7);
+    }
+    #login-modal > div {
+      background: var(--modal-bg);
+      color: var(--input-text);
+    }
+    #login-modal input {
+      background: var(--input-bg);
+      color: var(--input-text);
+      border: 1px solid #ccc;
+    }
+    #login-modal button {
+      background: var(--button-bg);
+      color: var(--button-text);
+    }
+    #login-modal button:hover {
+      background: #45a049;
+    }
+    audio::-webkit-media-controls-panel {
+      background-color: var(--album-bg);
+      color: var(--text-color);
+    }
+    audio {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .lossless {
+      font-size: 0.85em;
+      color: #28a745;
+      font-weight: bold;
+    }
+    .track-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--progress-bg);
+    }
+    .track-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    audio {
+      width: 100%;
+      margin-top: 5px;
+    }
+    .album-cover {
+      width: 70%;
+      max-width: 300px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      cursor: pointer;
+    }
+    .now-playing {
+      position: fixed;
+      bottom: 0;
+      left: 340px;
+      right: 0;
+      background: rgba(255,255,255,0.9);
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-family: 'Inter', Arial, sans-serif;
+    }
+    .now-playing .track-name {
+      color: black;
+    }
+    [data-theme='dark'] .now-playing {
+      background: rgba(30,30,30,0.9);
+    }
+    [data-theme='dark'] .now-playing .track-name {
+      color: white;
+    }
+    .now-playing audio {
+      flex: 1;
+    }
+    .track-name {
+      font-weight: bold;
+      min-width: 200px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .album-selection {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 50px;
+    }
+    .album-option {
+      text-align: center;
+      cursor: pointer;
+      max-width: 300px;
+    }
+    .album-option img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+    .album-option:hover img {
+      transform: scale(1.05);
+    }
+    .album-view {
+      text-align: center;
+    }
+    .album-view .track {
+      margin-top: 15px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #45a049;
+    }
+    .disabled-btn {
+      background: #888;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    button.back {
+      background: #f44336;
+      color: white;
+      font-size: 0.9em;
+      margin-bottom: 20px;
+    }
+    button.back:hover {
+      background: #e53935;
+    }
+    .now-playing-controls {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      flex: 1;
+    }
+    .play-pause-btn {
+      background: var(--play-button-bg);
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      padding: 8px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .play-pause-btn:hover {
+      background: var(--play-button-hover-bg);
+    }
+    .progress-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85em;
+      user-select: none;
+      color: black;
+    }
+    [data-theme='dark'] .progress-container {
+      color: white;
+    }
+    .time-current, .time-duration {
+      width: 40px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .now-playing label {
+      color: black;
+    }
+    [data-theme='dark'] .now-playing label {
+      color: white;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 6px;
+      background: var(--progress-bg);
+      border-radius: 3px;
+      cursor: pointer;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--progress-fill);
+      border-radius: 3px;
+      width: 0%;
+    }
+    #audio-volume {
+      width: 100px;
+    }
+  </style>
+</head>
+<script>
+  function setTheme(theme) {
+    if (theme === 'system') {
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+  }
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    const themeSelect = document.getElementById('theme-select');
+    if (themeSelect && themeSelect.value === 'system') {
+      setTheme('system');
+    }
+  });
+
+
+  let isSignup = true;
+  function toggleLoginSignup() {
+    isSignup = !isSignup;
+    document.querySelector('#login-modal h2').textContent = isSignup ? 'Sign Up for benpstokerbeats Streaming' : 'Login to benpstokerbeats Streaming';
+    document.getElementById('login-email').style.display = isSignup ? 'block' : 'none';
+    document.querySelector('#login-modal button').textContent = isSignup ? 'Sign Up' : 'Login';
+    document.querySelector('#login-modal p').innerHTML = isSignup
+      ? 'Already have an account? <a href="#" onclick="toggleLoginSignup()">Sign In</a>'
+      : 'Don\'t have an account? <a href="#" onclick="toggleLoginSignup()">Sign Up</a>';
+  }
+
+  function submitForm() {
+    const user = document.getElementById('login-username').value.trim();
+    const pass = document.getElementById('login-password').value;
+    const email = document.getElementById('login-email') ? document.getElementById('login-email').value.trim() : '';
+    if (!user || !pass || (isSignup && !email)) {
+      alert('Please fill all fields.');
+      return;
+    }
+    let users = JSON.parse(localStorage.getItem('bpsb-users')) || {};
+    if (isSignup) {
+      if (users[user]) {
+        alert('Username already exists.');
+        return;
+      }
+      users[user] = { password: pass, email: email };
+      localStorage.setItem('bpsb-users', JSON.stringify(users));
+      localStorage.setItem('bpsb-current', user);
+      document.getElementById('login-modal').style.display = 'none';
+      const hour = new Date().getHours();
+      let greeting = "Welcome";
+      if (hour >= 5 && hour < 12) {
+        greeting = "Good morning";
+      } else if (hour >= 12 && hour < 17) {
+        greeting = "Good afternoon";
+      } else {
+        greeting = "Good evening";
+      }
+      document.getElementById('sidebar-welcome').textContent = `${greeting}, ${user}`;
+    } else {
+      if (!users[user]) {
+        alert('Username not found.');
+        return;
+      }
+      if (users[user].password !== pass) {
+        alert('Incorrect password.');
+        return;
+      }
+      localStorage.setItem('bpsb-current', user);
+      document.getElementById('login-modal').style.display = 'none';
+      const hour = new Date().getHours();
+      let greeting = "Welcome";
+      if (hour >= 5 && hour < 12) {
+        greeting = "Good morning";
+      } else if (hour >= 12 && hour < 17) {
+        greeting = "Good afternoon";
+      } else {
+        greeting = "Good evening";
+      }
+      document.getElementById('sidebar-welcome').textContent = `${greeting}, ${user}`;
+    }
+  }
+
+  function logout() {
+    localStorage.removeItem('bpsb-current');
+    isSignup = false;
+    document.getElementById('login-modal').style.display = 'flex';
+    document.getElementById('sidebar-welcome').textContent = 'benpstokerbeats Streaming';
+    toggleLoginSignup();
+  }
+
+  function formatTime(seconds) {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2,'0')}`;
+  }
+
+  function playNow(name, src) {
+    const nowPlaying = document.getElementById('now-playing');
+    const trackName = document.getElementById('current-track');
+    const audio = document.getElementById('now-playing-audio');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+
+    trackName.textContent = "Now Playing: " + name;
+    audio.src = src;
+    audio.play();
+    nowPlaying.style.display = 'flex';
+    if (playPauseBtn) {
+      playPauseBtn.disabled = false;
+      playPauseBtn.classList.remove('disabled-btn');
+    }
+  }
+
+  function showAlbum(albumType) {
+    document.querySelector('.album-selection').style.display = 'none';
+    document.getElementById('album-alternate').style.display = (albumType === 'alternate') ? 'block' : 'none';
+    document.getElementById('album-original').style.display = (albumType === 'original') ? 'block' : 'none';
+  }
+
+  function backToSelection() {
+    document.querySelector('.album-selection').style.display = 'flex';
+    document.getElementById('album-alternate').style.display = 'none';
+    document.getElementById('album-original').style.display = 'none';
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    setTheme('system');
+    const sidebarWelcome = document.getElementById('sidebar-welcome');
+    const currentUser = localStorage.getItem('bpsb-current');
+    if (currentUser) {
+      document.getElementById('login-modal').style.display = 'none';
+      const hour = new Date().getHours();
+      let greeting = "Welcome";
+      if (hour >= 5 && hour < 12) {
+        greeting = "Good morning";
+      } else if (hour >= 12 && hour < 17) {
+        greeting = "Good afternoon";
+      } else {
+        greeting = "Good evening";
+      }
+      sidebarWelcome.textContent = `${greeting}, ${currentUser}`;
+    } else {
+      sidebarWelcome.textContent = 'benpstokerbeats Streaming';
+      document.getElementById('login-modal').style.display = 'flex';
+    }
+
+    if (!document.getElementById('login-email')) {
+      const usernameInput = document.getElementById('login-username');
+      const passwordInput = document.getElementById('login-password');
+      const emailInput = document.createElement('input');
+      emailInput.id = 'login-email';
+      emailInput.type = 'email';
+      emailInput.placeholder = 'Email';
+      emailInput.style = "width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;";
+      usernameInput.parentNode.insertBefore(emailInput, passwordInput);
+    }
+    isSignup = true;
+    toggleLoginSignup();
+
+    const audio = document.getElementById('now-playing-audio');
+    const vol = document.getElementById('audio-volume');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const timeCurrent = document.getElementById('time-current');
+    const timeDuration = document.getElementById('time-duration');
+
+    if (playPauseBtn) {
+      playPauseBtn.disabled = true;
+      playPauseBtn.classList.add('disabled-btn');
+    }
+
+    if (audio && vol && playPauseBtn && progressBar && progressFill && timeCurrent && timeDuration) {
+      vol.addEventListener('input', () => {
+        audio.volume = vol.value;
+      });
+
+      playPauseBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+        } else {
+          audio.pause();
+        }
+      });
+
+      audio.addEventListener('play', () => {
+        playPauseBtn.innerHTML = '<b>&#8545;</b>';
+        playPauseBtn.setAttribute('aria-label', 'Pause');
+      });
+      audio.addEventListener('pause', () => {
+        playPauseBtn.innerHTML = '&#9658;';
+        playPauseBtn.setAttribute('aria-label', 'Play');
+      });
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          const percent = (audio.currentTime / audio.duration) * 100;
+          progressFill.style.width = percent + '%';
+          timeCurrent.textContent = formatTime(audio.currentTime);
+          timeDuration.textContent = formatTime(audio.duration);
+          progressBar.setAttribute('aria-valuenow', Math.floor(percent));
+        }
+      });
+
+      progressBar.addEventListener('click', (e) => {
+        const rect = progressBar.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        const width = rect.width;
+        const seekTime = (clickX / width) * audio.duration;
+        audio.currentTime = seekTime;
+      });
+
+      progressBar.addEventListener('keydown', (e) => {
+        if (!audio.duration) return;
+        let seekTime = audio.currentTime;
+        const step = 5;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
+          seekTime = Math.min(audio.currentTime + step, audio.duration);
+          audio.currentTime = seekTime;
+          e.preventDefault();
+        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
+          seekTime = Math.max(audio.currentTime - step, 0);
+          audio.currentTime = seekTime;
+          e.preventDefault();
+        }
+      });
+    }
+  });
+</script>
+<body>
+
+<div id="login-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:1000;">
+  <div style="padding:30px;border-radius:10px;max-width:400px;width:90%;">
+    <h2>Sign Up for benpstokerbeats Streaming</h2>
+    <input id="login-username" type="text" placeholder="Username" style="width:100%;padding:10px;margin-top:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
+    <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
+    <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px;margin-bottom:20px;border-radius:8px;border:1px solid #ccc;">
+    <button onclick="submitForm()" style="width:100%;">Sign Up</button>
+    <p style="text-align:center; margin-top:10px;">
+      Already have an account? <a href="#" onclick="toggleLoginSignup()">Sign In</a>
+    </p>
+  </div>
+</div>
+
+  <div class="sidebar">
+    <div>
+      <h1 id="sidebar-welcome">benpstokerbeats Streaming</h1>
+      <div class="theme-select">
+        <label for="theme-select">Theme:</label>
+        <select id="theme-select" onchange="setTheme(this.value)">
+          <option value="system" selected>System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+      <button onclick="backToSelection()" style="margin-top:20px;width:100%;">Home</button>
+      <button onclick="logout()" style="margin-top:20px;width:100%;">Logout</button>
+    </div>
+    <footer>
+      <p>benpstokerbeats Streaming is in beta.</p>
+    </footer>
+  </div>
+
+<div class="main-content">
+  <div class="album-selection">
+    <div class="album-option" onclick="showAlbum('alternate')">
+      <img src="assets/rainy day album cover deluxe.png" alt="Alternate Skies" class="album-cover">
+      <h2>Rainy Day Rainbow: Alternate Skies</h2>
+      <p>benpstokerbeats</p>
+    </div>
+    <div class="album-option" onclick="showAlbum('original')">
+      <img src="assets/rainy day rainbow album cover.jpeg" alt="Rainy Day Rainbow" class="album-cover">
+      <h2>Rainy Day Rainbow</h2>
+      <p>benpstokerbeats</p>
+    </div>
+  </div>
+
+  <div id="album-alternate" class="album-view" style="display:none;">
+    <img src="assets/rainy day album cover deluxe.png" alt="Rainy Day Rainbow: Alternate Skies" class="album-cover">
+    <h2>Rainy Day Rainbow: Alternate Skies</h2>
+    <p><strong>Artist:</strong> benpstokerbeats</p>
+    <div class="track-row">
+      <div class="track-info">
+        <span>1. Rainy Day Rainbow</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>2. Cool Summer Nights</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>3. Sunny City Day</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>4. Rainy Day Rainbow (Slowed)</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Rainy Day Rainbow (Slowed)', 'assets/Rainy Day Rainbow (Slowed).wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>5. Rainy Day Rainbow (Original Version)</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Rainy Day Rainbow (Original Version)', 'assets/Rainy Day Rainbow (Original Version).wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>6. Cool Summer Nights (Original Version)</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Cool Summer Nights (Original Version)', 'assets/Cool Summer Nights (Original Version).wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>7. Sunny City Ambience</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Sunny City Ambience', 'assets/Sunny City Ambience.wav')">&#9658;</button>
+    </div>
+    <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);">Released December 25, 2024<br/>&copy; 2024 Stometheus Records</p>
+    <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);"></p>
+    <div style="height: 30px;"></div>
+  </div>
+
+  <div id="album-original" class="album-view" style="display:none;">
+    <img src="assets/rainy day rainbow album cover.jpeg" alt="Rainy Day Rainbow Album Cover" class="album-cover">
+    <h2>Rainy Day Rainbow</h2>
+    <p><strong>Artist:</strong> benpstokerbeats</p>
+    <div class="track-row">
+      <div class="track-info">
+        <span>1. Rainy Day Rainbow</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>2. Cool Summer Nights</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#9658;</button>
+    </div>
+    <div class="track-row">
+      <div class="track-info">
+        <span>3. Sunny City Day</span> <span class="lossless">(Lossless)</span>
+      </div>
+      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#9658;</button>
+    </div>
+    <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);">Released September 25, 2023<br/>&copy; 2023 Stometheus Records</p>
+    <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);"></p>
+    <div style="height: 30px;"></div>
+  </div>
+</div>
+
+<div class="now-playing" id="now-playing">
+  <div class="track-name" id="current-track">Not Playing</div>
+  <div class="now-playing-controls">
+    <button id="play-pause-btn" class="play-pause-btn" aria-label="Play/Pause">&#9658;</button>
+    <div class="progress-container" aria-label="Audio progress">
+      <div class="time-current" id="time-current">--:--</div>
+      <div class="progress-bar" id="progress-bar" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="progress-fill" id="progress-fill"></div>
+      </div>
+      <div class="time-duration" id="time-duration">--:--</div>
+    </div>
+    <label style="font-size:0.9em; margin-bottom: 0; display: flex; align-items: center; gap: 5px;">Volume
+      <input type="range" id="audio-volume" min="0" max="1" step="0.01" value="1" style="vertical-align:middle;">
+    </label>
+  </div>
+  <audio id="now-playing-audio" style="display:none;"></audio>
+</div>
+
+</body>
+</html>
