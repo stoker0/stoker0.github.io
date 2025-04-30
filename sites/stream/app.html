@@ -619,9 +619,9 @@
         padding: 6px 15px;
       }
       .now-playing .track-name {
-        width: 120px;
-        min-width: 120px;
-        max-width: 120px;
+        width: clamp(50px, 15vw, 120px);
+        min-width: clamp(50px, 15vw, 120px);
+        max-width: clamp(50px, 15vw, 120px);
       }
       .hamburger-menu {
         display: flex !important;
