@@ -151,17 +151,25 @@
       padding: 20px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-right: 1px solid var(--glass-border);
       z-index: 10;
     }
+    .sidebar > div:first-of-type {
+      margin-top: 0;
+    }
+    .sidebar > div {
+      width: 100%;
+    }
     .main-content {
-      margin-left: 315px;
+      margin-left: 340px;
       flex: 1;
       padding: 30px;
+      padding-bottom: 80px;
       overflow-y: auto;
+      box-sizing: border-box;
     }
     .album {
       background: var(--album-bg);
@@ -202,11 +210,78 @@
       color: var(--select-text);
     }
     #login-modal {
-      background: rgba(0,0,0,0.7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: var(--bg-color);
+      gap: 0;
     }
     #login-modal > div {
-      background: var(--modal-bg);
-      color: var(--input-text);
+      flex: 1;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
+    #login-modal .welcome-section {
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid var(--glass-border);
+      flex: 0 0 55%;
+      text-align: center;
+      padding: 0 30px;
+    }
+    #login-modal .welcome-section h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: var(--text-color);
+      max-width: 800px;
+      width: 100%;
+    }
+    #login-modal .welcome-section p {
+      font-size: 1.2em;
+      color: var(--text-color);
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+    #login-modal .form-section {
+      flex: 0 0 35%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0 30px;
+      width: 100%;
+    }
+    #login-modal .form-section > * {
+      width: 100%;
+      max-width: min(350px, 90%);
+    }
+    #login-modal .form-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: clamp(1.5em, 3vw, 2em);
+    }
+    #login-modal .form-section input,
+    #login-modal .form-section button {
+      width: 100%;
+      padding: clamp(8px, 2vw, 12px);
+      font-size: clamp(14px, 2vw, 16px);
+    }
+    #login-modal .form-section p {
+      text-align: center;
+      margin-top: 20px;
+      font-size: clamp(14px, 2vw, 16px);
     }
     #login-modal input {
       background: var(--input-bg);
@@ -238,6 +313,7 @@
       border-radius: 10px;
       padding: 8px 15px;
       margin-bottom: 8px;
+      box-shadow: var(--box-shadow);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border: 1px solid var(--glass-border);
@@ -298,54 +374,73 @@
       right: 0;
       background: var(--now-playing-bg);
       box-shadow: var(--now-playing-shadow);
-      padding: 10px 25px;
+      padding: 6px 15px;
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 8px;
       font-family: 'Inter Tight', 'Inter', sans-serif;
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       border-top: 1px solid var(--glass-border);
+      min-height: 50px;
+      box-sizing: border-box;
     }
     .now-playing .track-name {
-      color: black;
-    }
-    [data-theme='dark'] .now-playing,
-    [data-theme='ocean'] .now-playing,
-    [data-theme='sunset'] .now-playing,
-    [data-theme='emerald'] .now-playing {
-      background: var(--now-playing-bg);
-      box-shadow: var(--now-playing-shadow);
-    }
-    [data-theme='dark'] .now-playing .track-name,
-    [data-theme='ocean'] .now-playing .track-name,
-    [data-theme='sunset'] .now-playing .track-name,
-    [data-theme='emerald'] .now-playing .track-name,
-    [data-theme='dark'] .now-playing label,
-    [data-theme='ocean'] .now-playing label,
-    [data-theme='sunset'] .now-playing label,
-    [data-theme='emerald'] .now-playing label {
-      color: var(--now-playing-text);
-    }
-    .now-playing audio {
-      flex: 1;
-    }
-    .track-name {
-      font-weight: bold;
-      min-width: 200px;
-      white-space: nowrap;
+      width: clamp(140px, 15vw, 300px);
+      min-width: clamp(140px, 15vw, 300px);
+      max-width: clamp(140px, 15vw, 300px);
       overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 0.9em;
+      color: var(--text-color);
+    }
+    .track-name-text {
+      white-space: nowrap;
+      display: inline-block;
+      animation: scrollText 12s linear infinite;
+    }
+    .now-playing-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      margin-left: 10px;
+    }
+    .progress-container {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8em;
+      user-select: none;
+      min-width: 0;
+    }
+    .progress-bar {
+      flex: 1;
+      height: 4px;
+      background: var(--progress-bg);
+      border-radius: 2px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      min-width: 0;
+    }
+    #audio-volume {
+      width: 70px;
+      accent-color: var(--accent-color);
     }
     .album-selection {
       display: flex;
       justify-content: space-around;
       margin-top: 50px;
+      flex-wrap: wrap;
+      gap: 30px;
     }
     .album-option {
       text-align: center;
       cursor: pointer;
       max-width: 300px;
+      flex: 1;
+      min-width: 250px;
     }
     .album-option img {
       width: 250px;
@@ -359,7 +454,9 @@
     }
     .album-view {
       text-align: center;
-      padding-left: 20px;
+      padding-left: 0;
+      max-width: 800px;
+      margin: 0 auto;
     }
     .album-view .track {
       margin-top: 15px;
@@ -394,7 +491,7 @@
     .now-playing-controls {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 8px;
       flex: 1;
     }
     .play-pause-btn {
@@ -416,17 +513,6 @@
     .play-pause-btn:hover {
       background: var(--play-button-hover-bg);
     }
-    .progress-container {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 0.85em;
-      user-select: none;
-    }
-    [data-theme='dark'] .progress-container {
-      color: white;
-    }
     .time-current, .time-duration {
       color: var(--time-color);
     }
@@ -435,26 +521,6 @@
     }
     [data-theme='dark'] .now-playing label {
       color: white;
-    }
-    .progress-bar {
-      flex: 1;
-      height: 6px;
-      background: var(--progress-bg);
-      border-radius: 3px;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-    }
-    .progress-fill {
-      height: 100%;
-      background: var(--progress-fill);
-      border-radius: 3px;
-      width: 0%;
-      transition: width 0.1s linear;
-    }
-    #audio-volume {
-      width: 100px;
-      accent-color: var(--accent-color);
     }
     .settings-view {
       max-width: 800px;
@@ -487,6 +553,211 @@
       align-items: center;
       justify-content: space-between;
     }
+    .settings-view h2 {
+      text-align: center;
+      width: 100%;
+      margin: 0 0 30px 0;
+      font-size: 1.5em;
+      padding: 0;
+    }
+    @media (max-width: 768px) {
+      .sidebar {
+        position: fixed;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        display: none;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      
+      .sidebar > div {
+        width: 100%;
+        max-width: 100%;
+      }
+      
+      .sidebar.active {
+        display: block;
+        left: 0;
+      }
+      .sidebar h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      .sidebar button {
+        width: 100%;
+        margin-top: 15px;
+      }
+      .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
+        padding-top: 80px;
+        padding-bottom: 80px;
+      }
+      .main-content h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+        width: 100%;
+      }
+      .album-selection {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+      }
+      .album-option {
+        width: 100%;
+        max-width: 300px;
+      }
+      .now-playing {
+        left: 0;
+        width: 100%;
+        padding: 6px 15px;
+      }
+      .now-playing .track-name {
+        width: 120px;
+        min-width: 120px;
+        max-width: 120px;
+      }
+      .hamburger-menu {
+        display: flex !important;
+      }
+      .close-menu {
+        display: flex !important;
+      }
+      #login-modal {
+        flex-direction: column;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      #login-modal .welcome-section {
+        display: none;
+      }
+      #login-modal .form-section {
+        flex: 1;
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        justify-content: center;
+        background: var(--glass-bg);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-radius: 15px;
+        box-sizing: border-box;
+      }
+      #login-modal .form-section > * {
+        max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      #login-modal .form-section h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+        text-align: center;
+        padding: 0 10px;
+      }
+      #login-modal input,
+      #login-modal button {
+        width: 100%;
+        box-sizing: border-box;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      #mobile-welcome, .settings-view h2 {
+        margin: 0 0 30px 0;
+      }
+      .settings-view {
+        padding-top: 0;
+      }
+    }
+
+    .hamburger-menu {
+      display: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      padding: 8px;
+      cursor: pointer;
+      font-size: 24px;
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color);
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .close-menu {
+      display: none;
+      position: absolute;
+      right: 20px;
+      font-size: 24px;
+      cursor: pointer;
+      color: var(--text-color);
+      width: 40px;
+      height: 40px;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    .menu-header {
+      position: relative;
+      width: 100%;
+      height: 20px;
+    }
+    [data-theme='ocean'] .now-playing label,
+    [data-theme='sunset'] .now-playing label,
+    [data-theme='emerald'] .now-playing label {
+      color: #ffffff;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--progress-fill);
+      border-radius: 2px;
+      width: 0%;
+      transition: width 0.1s linear;
+    }
+    @keyframes scrollText {
+      0% {
+          transform: translateX(0%);
+      }
+      45% {
+          transform: translateX(0%);
+      }
+      50% {
+          transform: translateX(calc(-100% + clamp(140px, 15vw, 300px)));
+      }
+      95% {
+          transform: translateX(calc(-100% + clamp(140px, 15vw, 300px)));
+      }
+      100% {
+          transform: translateX(0%);
+      }
+    }
+
+    /* Remove the hover-based animation trigger */
+    .now-playing .track-name:hover .track-name-text {
+        animation-play-state: running;
+    }
+
+    @media (max-width: 768px) {
+        .now-playing .track-name {
+            width: 140px;
+            min-width: 140px;
+            max-width: 140px;
+        }
+    }
   </style>
 </head>
 <script>
@@ -501,6 +772,15 @@
       document.documentElement.setAttribute('data-theme', theme);
     }
     localStorage.setItem('bpsb-theme', theme);
+    // Save theme to user account if logged in
+    const currentUser = localStorage.getItem('bpsb-current');
+    if (currentUser) {
+      let users = JSON.parse(localStorage.getItem('bpsb-users')) || {};
+      if (users[currentUser]) {
+        users[currentUser].theme = theme;
+        localStorage.setItem('bpsb-users', JSON.stringify(users));
+      }
+    }
   }
 
   function setLanguage(lang) {
@@ -521,12 +801,38 @@
   let isSignup = true;
   function toggleLoginSignup() {
     isSignup = !isSignup;
-    document.querySelector('#login-modal h2').textContent = isSignup ? 'Sign Up for benpstokerbeats Streaming' : 'Login to benpstokerbeats Streaming';
+    document.getElementById('login-title').textContent = isSignup ? 'Sign Up for benpstokerbeats Streaming' : 'Sign In to benpstokerbeats Streaming';
     document.getElementById('login-email').style.display = isSignup ? 'block' : 'none';
-    document.querySelector('#login-modal button').textContent = isSignup ? 'Sign Up' : 'Login';
-    document.querySelector('#login-modal p').innerHTML = isSignup
+    document.querySelector('.form-section button').textContent = isSignup ? 'Sign Up' : 'Sign In';
+    document.querySelector('.form-section p').innerHTML = isSignup
       ? 'Already have an account? <a href="#" onclick="toggleLoginSignup()">Sign In</a>'
       : 'Don\'t have an account? <a href="#" onclick="toggleLoginSignup()">Sign Up</a>';
+  }
+
+  function updateAllWelcomeText(user) {
+    const hour = new Date().getHours();
+    let greeting = "Welcome";
+    if (hour >= 5 && hour < 12) {
+        greeting = "Good morning";
+    } else if (hour >= 12 && hour < 17) {
+        greeting = "Good afternoon";
+    } else {
+        greeting = "Good evening";
+    }
+    
+    // Update sidebar welcome
+    const sidebarWelcome = document.getElementById('sidebar-welcome');
+    if (window.innerWidth <= 768) {
+        sidebarWelcome.textContent = 'Menu';
+    } else {
+        sidebarWelcome.textContent = user ? `${greeting}, ${user}` : 'benpstokerbeats Streaming';
+    }
+    
+    // Update mobile welcome
+    const mobileWelcome = document.getElementById('mobile-welcome');
+    if (mobileWelcome) {
+        mobileWelcome.textContent = user ? `${greeting}, ${user}` : 'benpstokerbeats Streaming';
+    }
   }
 
   function submitForm() {
@@ -543,20 +849,16 @@
         alert('Username already exists.');
         return;
       }
-      users[user] = { password: pass, email: email };
+      users[user] = { 
+        password: pass, 
+        email: email,
+        theme: 'system' // Default theme for new users
+      };
       localStorage.setItem('bpsb-users', JSON.stringify(users));
       localStorage.setItem('bpsb-current', user);
       document.getElementById('login-modal').style.display = 'none';
-      const hour = new Date().getHours();
-      let greeting = "Welcome";
-      if (hour >= 5 && hour < 12) {
-        greeting = "Good morning";
-      } else if (hour >= 12 && hour < 17) {
-        greeting = "Good afternoon";
-      } else {
-        greeting = "Good evening";
-      }
-      document.getElementById('sidebar-welcome').textContent = `${greeting}, ${user}`;
+      updateAllWelcomeText(user);
+      setTheme('system'); // Set default theme for new users
     } else {
       if (!users[user]) {
         alert('Username not found.');
@@ -568,16 +870,10 @@
       }
       localStorage.setItem('bpsb-current', user);
       document.getElementById('login-modal').style.display = 'none';
-      const hour = new Date().getHours();
-      let greeting = "Welcome";
-      if (hour >= 5 && hour < 12) {
-        greeting = "Good morning";
-      } else if (hour >= 12 && hour < 17) {
-        greeting = "Good afternoon";
-      } else {
-        greeting = "Good evening";
-      }
-      document.getElementById('sidebar-welcome').textContent = `${greeting}, ${user}`;
+      updateAllWelcomeText(user);
+      // Set user's saved theme
+      const userTheme = users[user].theme || 'system';
+      setTheme(userTheme);
     }
   }
 
@@ -585,8 +881,10 @@
     localStorage.removeItem('bpsb-current');
     isSignup = false;
     document.getElementById('login-modal').style.display = 'flex';
-    document.getElementById('sidebar-welcome').textContent = 'benpstokerbeats Streaming';
-    toggleLoginSignup();
+    updateAllWelcomeText(null);
+    if (window.innerWidth <= 768) {
+      toggleSidebar();
+    }
   }
 
   function formatTime(seconds) {
@@ -609,7 +907,20 @@
     const newAudio = audio.cloneNode(true);
     audio.parentNode.replaceChild(newAudio, audio);
 
-    trackName.textContent = "Now Playing: " + name;
+    // Update track name
+    trackName.innerHTML = `<span class="track-name-text" style="animation: none;">${name}</span>`;
+    
+    // Check if text needs scrolling and set up animation
+    const textSpan = trackName.querySelector('.track-name-text');
+    // Force a reflow to get accurate measurements
+    void textSpan.offsetWidth;
+    
+    if (textSpan.scrollWidth > trackName.offsetWidth) {
+        textSpan.style.animation = 'scrollText 12s linear infinite';
+    } else {
+        textSpan.style.animation = 'none';
+    }
+
     newAudio.src = src;
     newAudio.play();
     nowPlaying.style.display = 'flex';
@@ -695,13 +1006,11 @@
     document.querySelector('.album-selection').style.display = 'none';
     document.getElementById('album-alternate').style.display = (albumType === 'alternate') ? 'block' : 'none';
     document.getElementById('album-original').style.display = (albumType === 'original') ? 'block' : 'none';
-  }
-
-  function backToSelection() {
-    document.querySelector('.album-selection').style.display = 'flex';
-    document.getElementById('album-alternate').style.display = 'none';
-    document.getElementById('album-original').style.display = 'none';
-    document.getElementById('settings-view').style.display = 'none';
+    // Hide mobile welcome text when showing album
+    document.getElementById('mobile-welcome').style.display = 'none';
+    // Close sidebar
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.remove('active');
   }
 
   function showSettings() {
@@ -709,16 +1018,89 @@
     document.getElementById('album-alternate').style.display = 'none';
     document.getElementById('album-original').style.display = 'none';
     document.getElementById('settings-view').style.display = 'block';
-    // Sync theme selection
-    const sidebarTheme = document.getElementById('theme-select');
-    const settingsTheme = document.getElementById('theme-select-settings');
-    settingsTheme.value = sidebarTheme.value;
+    // Hide mobile welcome text in settings
+    document.getElementById('mobile-welcome').style.display = 'none';
+    // Close sidebar
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.remove('active');
+  }
+
+  function backToSelection() {
+    document.querySelector('.album-selection').style.display = 'flex';
+    document.getElementById('album-alternate').style.display = 'none';
+    document.getElementById('album-original').style.display = 'none';
+    document.getElementById('settings-view').style.display = 'none';
+    // Show mobile welcome text only on home page
+    if (window.innerWidth <= 768) {
+        document.getElementById('mobile-welcome').style.display = 'block';
+    }
+    // Close sidebar
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.remove('active');
+  }
+
+  function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    if (window.innerWidth <= 768) {
+      sidebar.classList.toggle('active');
+    }
+  }
+
+  // Close sidebar when clicking outside
+  document.addEventListener('click', function(event) {
+    const sidebar = document.querySelector('.sidebar');
+    const hamburger = document.querySelector('.hamburger-menu');
+    if (sidebar.classList.contains('active') && 
+        !sidebar.contains(event.target) && 
+        !hamburger.contains(event.target)) {
+      sidebar.classList.remove('active');
+    }
+  });
+
+  // Close sidebar when clicking a menu item
+  document.querySelectorAll('.sidebar button').forEach(button => {
+    button.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        toggleSidebar();
+      }
+    });
+  });
+
+  function updateWelcomeText() {
+    const currentUser = localStorage.getItem('bpsb-current');
+    const sidebarWelcome = document.getElementById('sidebar-welcome');
+    const mobileWelcome = document.getElementById('mobile-welcome');
+    
+    if (window.innerWidth <= 768) {
+        // Only show mobile welcome on home page
+        const isHomePage = document.querySelector('.album-selection').style.display !== 'none';
+        mobileWelcome.style.display = isHomePage ? 'block' : 'none';
+        sidebarWelcome.textContent = 'Menu';
+    } else {
+        mobileWelcome.style.display = 'none';
+        if (currentUser) {
+            const hour = new Date().getHours();
+            let greeting = "Welcome";
+            if (hour >= 5 && hour < 12) {
+                greeting = "Good morning";
+            } else if (hour >= 12 && hour < 17) {
+                greeting = "Good afternoon";
+            } else {
+                greeting = "Good evening";
+            }
+            sidebarWelcome.textContent = `${greeting}, ${currentUser}`;
+        } else {
+            sidebarWelcome.textContent = 'Menu';
+        }
+    }
   }
 
   window.addEventListener('DOMContentLoaded', () => {
     // Check login status first
     const currentUser = localStorage.getItem('bpsb-current');
     const sidebarWelcome = document.getElementById('sidebar-welcome');
+    const mobileWelcome = document.getElementById('mobile-welcome');
+    
     if (currentUser) {
       document.getElementById('login-modal').style.display = 'none';
       const hour = new Date().getHours();
@@ -730,9 +1112,16 @@
       } else {
         greeting = "Good evening";
       }
-      sidebarWelcome.textContent = `${greeting}, ${currentUser}`;
+      if (window.innerWidth <= 768) {
+        mobileWelcome.style.display = 'block';
+        mobileWelcome.textContent = `${greeting}, ${currentUser}`;
+        sidebarWelcome.textContent = 'Menu';
+      } else {
+        sidebarWelcome.textContent = `${greeting}, ${currentUser}`;
+      }
     } else {
       sidebarWelcome.textContent = 'benpstokerbeats Streaming';
+      mobileWelcome.style.display = 'none';
       document.getElementById('login-modal').style.display = 'flex';
     }
 
@@ -761,13 +1150,29 @@
     if (audio) {
       setupAudioEventListeners(audio, playPauseBtn, progressBar, progressFill, timeCurrent, timeDuration);
     }
+
+    // Add resize listener for welcome text
+    window.addEventListener('resize', () => {
+      const currentUser = localStorage.getItem('bpsb-current');
+      updateAllWelcomeText(currentUser);
+    });
+
+    // Show mobile welcome text only if we're on the home page
+    if (window.innerWidth <= 768) {
+        const isHomePage = document.querySelector('.album-selection').style.display !== 'none';
+        document.getElementById('mobile-welcome').style.display = isHomePage ? 'block' : 'none';
+    }
   });
 </script>
 <body>
 
-<div id="login-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;display:flex;justify-content:center;align-items:center;z-index:1000;">
-  <div style="padding:30px;border-radius:10px;max-width:400px;width:90%;">
-    <h2>Sign Up for benpstokerbeats Streaming</h2>
+<div id="login-modal">
+  <div class="welcome-section">
+    <h1>Welcome to benpstokerbeats Streaming</h1>
+    <p>Your personal music streaming experience. Sign in or create an account to get started.</p>
+  </div>
+  <div class="form-section">
+    <h2 id="login-title">Sign Up for benpstokerbeats Streaming</h2>
     <input id="login-username" type="text" placeholder="Username" style="width:100%;padding:10px;margin-top:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
     <input id="login-email" type="email" placeholder="Email" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;">
     <input id="login-password" type="password" placeholder="Password" style="width:100%;padding:10px;margin-bottom:20px;border-radius:8px;border:1px solid #ccc;">
@@ -778,19 +1183,22 @@
   </div>
 </div>
 
-  <div class="sidebar">
-    <div>
-      <h1 id="sidebar-welcome">benpstokerbeats Streaming</h1>
-      <button onclick="backToSelection()" style="margin-top:20px;width:100%;">Home</button>
-      <button onclick="showSettings()" style="margin-top:20px;width:100%;">Settings</button>
-      <button onclick="logout()" style="margin-top:20px;width:100%;">Logout</button>
-    </div>
-    <footer>
-      <p>benpstokerbeats Streaming is in early beta.</p>
-    </footer>
+<div class="hamburger-menu" onclick="toggleSidebar()">&#9776;</div>
+
+<div class="sidebar">
+  <div class="menu-header">
+    <div class="close-menu" onclick="toggleSidebar()">&#x2715;</div>
   </div>
+  <div>
+    <h1 id="sidebar-welcome">benpstokerbeats Streaming</h1>
+    <button onclick="backToSelection()" style="margin-top:20px;width:100%;">Home</button>
+    <button onclick="showSettings()" style="margin-top:20px;width:100%;">Settings</button>
+    <button onclick="logout()" style="margin-top:20px;width:100%;">Logout</button>
+  </div>
+</div>
 
 <div class="main-content">
+  <h1 id="mobile-welcome" style="display: none; text-align: center; width: 100%;">benpstokerbeats Streaming</h1>
   <div class="album-selection">
     <div class="album-option" onclick="showAlbum('alternate')">
       <img src="assets/rainy day album cover deluxe.png" alt="Alternate Skies" class="album-cover">
@@ -916,7 +1324,9 @@
 </div>
 
 <div class="now-playing" id="now-playing">
-  <div class="track-name" id="current-track">Not Playing</div>
+  <div class="track-name" id="current-track">
+    <span class="track-name-text" style="animation: none;">Not Playing</span>
+  </div>
   <div class="now-playing-controls">
     <button id="play-pause-btn" class="play-pause-btn" aria-label="Play/Pause">&#x23f5;</button>
     <div class="progress-container" aria-label="Audio progress">
