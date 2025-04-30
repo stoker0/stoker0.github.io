@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stream Music Free - benpstokerbeats Streaming</title>
+  <title>benpstokerbeats Streaming</title>
   <link rel="icon" href="/sites/stream/assets/favicon.ico" type="image/x-icon">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap');
@@ -11,7 +11,7 @@
     :root {
       --bg-color: #f0f0f5;
       --text-color: #333;
-      --album-bg: #ffffff;
+      --album-bg: rgba(240, 240, 245, 0.7);
       --box-shadow: 0 2px 8px rgba(0,0,0,0.1);
       --footer-color: #777;
       --modal-bg: #ffffff;
@@ -25,12 +25,14 @@
       --progress-fill: #4CAF50;
       --play-button-bg: #4CAF50;
       --play-button-hover-bg: #45a049;
+      --glass-bg: rgba(240, 240, 245, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.5);
     }
 
     [data-theme='dark'] {
       --bg-color: #121212;
       --text-color: #f0f0f5;
-      --album-bg: #1e1e1e;
+      --album-bg: rgba(40, 40, 40, 0.7);
       --box-shadow: 0 2px 8px rgba(0,0,0,0.5);
       --footer-color: #aaa;
       --modal-bg: #1e1e1e;
@@ -44,6 +46,89 @@
       --progress-fill: #388e3c;
       --play-button-bg: #388e3c;
       --play-button-hover-bg: #2e7d32;
+      --glass-bg: rgba(40, 40, 40, 0.85);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    [data-theme='ocean'] {
+      --bg-color: linear-gradient(135deg, #1a2a6c 0%, #2a4c7c 50%, #2c5c8f 100%);
+      --text-color: #ffffff;
+      --album-bg: rgba(42, 76, 124, 0.4);
+      --box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      --footer-color: #b0c4de;
+      --modal-bg: rgba(42, 76, 124, 0.95);
+      --input-bg: rgba(255, 255, 255, 0.1);
+      --input-text: #ffffff;
+      --button-bg: #4a90e2;
+      --button-text: #fff;
+      --select-bg: rgba(255, 255, 255, 0.1);
+      --select-text: #ffffff;
+      --progress-bg: rgba(255, 255, 255, 0.2);
+      --progress-fill: #4a90e2;
+      --play-button-bg: #4a90e2;
+      --play-button-hover-bg: #357abd;
+      --accent-color: #4a90e2;
+      --accent-hover: #357abd;
+      --now-playing-bg: rgba(20, 20, 20, 0.75);
+      --now-playing-text: #ffffff;
+      --now-playing-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+      --glass-bg: rgba(42, 76, 124, 0.6);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --time-color: #ffffff;
+    }
+
+    [data-theme='sunset'] {
+      --bg-color: linear-gradient(135deg, #8B0000, #D35400, #CC4400);
+      --text-color: #ffffff;
+      --album-bg: rgba(255, 255, 255, 0.1);
+      --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      --footer-color: #ffa07a;
+      --modal-bg: rgba(139, 0, 0, 0.95);
+      --input-bg: rgba(255, 255, 255, 0.1);
+      --input-text: #ffffff;
+      --button-bg: #ff7043;
+      --button-text: #fff;
+      --select-bg: rgba(255, 255, 255, 0.1);
+      --select-text: #ffffff;
+      --progress-bg: rgba(255, 255, 255, 0.2);
+      --progress-fill: #ff7043;
+      --play-button-bg: #ff7043;
+      --play-button-hover-bg: #f4511e;
+      --accent-color: #ff7043;
+      --accent-hover: #f4511e;
+      --now-playing-bg: rgba(20, 20, 20, 0.75);
+      --now-playing-text: #ffffff;
+      --now-playing-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --time-color: #ffffff;
+    }
+
+    [data-theme='emerald'] {
+      --bg-color: linear-gradient(135deg, #1a5f3c, #2d8659, #134b2b);
+      --text-color: #ffffff;
+      --album-bg: rgba(255, 255, 255, 0.1);
+      --box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      --footer-color: #a7e9c3;
+      --modal-bg: rgba(39, 174, 96, 0.95);
+      --input-bg: rgba(255, 255, 255, 0.1);
+      --input-text: #ffffff;
+      --button-bg: #2ecc71;
+      --button-text: #fff;
+      --select-bg: rgba(255, 255, 255, 0.1);
+      --select-text: #ffffff;
+      --progress-bg: rgba(255, 255, 255, 0.2);
+      --progress-fill: #2ecc71;
+      --play-button-bg: #2ecc71;
+      --play-button-hover-bg: #27ae60;
+      --accent-color: #2ecc71;
+      --accent-hover: #27ae60;
+      --now-playing-bg: rgba(20, 20, 20, 0.75);
+      --now-playing-text: #ffffff;
+      --now-playing-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+      --glass-border: rgba(255, 255, 255, 0.15);
+      --time-color: #ffffff;
     }
 
     body {
@@ -51,6 +136,7 @@
       min-height: 100vh;
       margin: 0;
       background: var(--bg-color);
+      background-attachment: fixed;
       color: var(--text-color);
       font-family: 'Inter Tight', 'Inter', sans-serif;
     }
@@ -60,12 +146,16 @@
       top: 0;
       bottom: 0;
       width: 300px;
-      background: var(--album-bg);
+      background: var(--glass-bg);
       box-shadow: var(--box-shadow);
       padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-right: 1px solid var(--glass-border);
+      z-index: 10;
     }
     .main-content {
       margin-left: 315px;
@@ -75,11 +165,19 @@
     }
     .album {
       background: var(--album-bg);
-      border-radius: 10px;
-      padding: 20px;
+      border-radius: 15px;
+      padding: 25px;
       margin-bottom: 30px;
       box-shadow: var(--box-shadow);
       text-align: center;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .album:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--box-shadow), 0 10px 20px rgba(0,0,0,0.1);
     }
     header {
       margin-bottom: 30px;
@@ -120,7 +218,7 @@
       color: var(--button-text);
     }
     #login-modal button:hover {
-      background: #45a049;
+      background: var(--accent-hover);
     }
     audio::-webkit-media-controls-panel {
       background-color: var(--album-bg);
@@ -136,16 +234,31 @@
       font-weight: bold;
     }
     .track-row {
+      background: var(--glass-bg);
+      border-radius: 10px;
+      padding: 8px 15px;
+      margin-bottom: 8px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid var(--progress-bg);
     }
     .track-info {
       display: flex;
       align-items: center;
       gap: 10px;
+      flex: 1;
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .track-info span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     audio {
       width: 100%;
@@ -154,34 +267,65 @@
     .album-cover {
       width: 70%;
       max-width: 300px;
-      border-radius: 10px;
-      margin-bottom: 15px;
+      border-radius: 15px;
+      margin-bottom: 20px;
       display: block;
       margin-left: auto;
       margin-right: auto;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .album-option .album-cover {
       cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .album-option .album-cover:hover {
+      transform: scale(1.02);
+    }
+    .track-row button {
+      margin-left: 15px;
+      font-size: 24px;
+      width: 36px;
+      height: 36px;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
     .now-playing {
       position: fixed;
       bottom: 0;
       left: 340px;
       right: 0;
-      background: rgba(255,255,255,0.9);
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.2);
-      padding: 10px 20px;
+      background: var(--now-playing-bg);
+      box-shadow: var(--now-playing-shadow);
+      padding: 10px 25px;
       display: flex;
       align-items: center;
       gap: 20px;
       font-family: 'Inter Tight', 'Inter', sans-serif;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid var(--glass-border);
     }
     .now-playing .track-name {
       color: black;
     }
-    [data-theme='dark'] .now-playing {
-      background: rgba(30,30,30,0.9);
+    [data-theme='dark'] .now-playing,
+    [data-theme='ocean'] .now-playing,
+    [data-theme='sunset'] .now-playing,
+    [data-theme='emerald'] .now-playing {
+      background: var(--now-playing-bg);
+      box-shadow: var(--now-playing-shadow);
     }
-    [data-theme='dark'] .now-playing .track-name {
-      color: white;
+    [data-theme='dark'] .now-playing .track-name,
+    [data-theme='ocean'] .now-playing .track-name,
+    [data-theme='sunset'] .now-playing .track-name,
+    [data-theme='emerald'] .now-playing .track-name,
+    [data-theme='dark'] .now-playing label,
+    [data-theme='ocean'] .now-playing label,
+    [data-theme='sunset'] .now-playing label,
+    [data-theme='emerald'] .now-playing label {
+      color: var(--now-playing-text);
     }
     .now-playing audio {
       flex: 1;
@@ -221,31 +365,31 @@
       margin-top: 15px;
     }
     button {
-      background: #4CAF50;
-      color: white;
+      background: var(--button-bg);
+      color: var(--button-text);
       border: none;
       padding: 10px 15px;
       border-radius: 8px;
       cursor: pointer;
       font-weight: bold;
-      transition: background 0.3s ease;
+      transition: background 0.2s ease;
     }
     button:hover {
-      background: #45a049;
+      background: var(--accent-hover, var(--button-hover-bg, #45a049));
     }
     .disabled-btn {
-      background: #888;
+      background: #888 !important;
       cursor: not-allowed;
       opacity: 0.6;
     }
     button.back {
-      background: #f44336;
-      color: white;
+      background: var(--accent-color);
+      color: var(--button-text);
       font-size: 0.9em;
       margin-bottom: 20px;
     }
     button.back:hover {
-      background: #e53935;
+      background: var(--accent-hover);
     }
     .now-playing-controls {
       display: flex;
@@ -256,9 +400,11 @@
     .play-pause-btn {
       background: var(--play-button-bg);
       border: none;
-      color: white;
-      font-size: 1.2em;
-      padding: 8px 12px;
+      color: var(--button-text);
+      font-size: 24px;
+      width: 38px;
+      height: 38px;
+      padding: 0;
       border-radius: 8px;
       cursor: pointer;
       display: flex;
@@ -274,18 +420,15 @@
       flex: 1;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
       font-size: 0.85em;
       user-select: none;
-      color: black;
     }
     [data-theme='dark'] .progress-container {
       color: white;
     }
     .time-current, .time-duration {
-      width: 40px;
-      text-align: center;
-      flex-shrink: 0;
+      color: var(--time-color);
     }
     .now-playing label {
       color: black;
@@ -300,15 +443,49 @@
       border-radius: 3px;
       cursor: pointer;
       position: relative;
+      overflow: hidden;
     }
     .progress-fill {
       height: 100%;
       background: var(--progress-fill);
       border-radius: 3px;
       width: 0%;
+      transition: width 0.1s linear;
     }
     #audio-volume {
       width: 100px;
+      accent-color: var(--accent-color);
+    }
+    .settings-view {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .settings-section {
+      background: var(--glass-bg);
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 20px;
+      box-shadow: var(--box-shadow);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+    }
+    .settings-section h3 {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: var(--text-color);
+    }
+    .theme-select-settings select,
+    .language-select-settings select {
+      width: 200px;
+      margin-left: 10px;
+    }
+    .theme-select-settings,
+    .language-select-settings {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
   </style>
 </head>
@@ -323,6 +500,14 @@
     } else {
       document.documentElement.setAttribute('data-theme', theme);
     }
+    localStorage.setItem('bpsb-theme', theme);
+  }
+
+  function setLanguage(lang) {
+    localStorage.setItem('bpsb-language', lang);
+    // In a full implementation, this would load language strings
+    // For now, we'll just store the preference
+    console.log('Language set to:', lang);
   }
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
@@ -415,15 +600,95 @@
     const trackName = document.getElementById('current-track');
     const audio = document.getElementById('now-playing-audio');
     const playPauseBtn = document.getElementById('play-pause-btn');
+    const progressBar = document.getElementById('progress-bar');
+    const progressFill = document.getElementById('progress-fill');
+    const timeCurrent = document.getElementById('time-current');
+    const timeDuration = document.getElementById('time-duration');
+
+    // Remove any existing event listeners
+    const newAudio = audio.cloneNode(true);
+    audio.parentNode.replaceChild(newAudio, audio);
 
     trackName.textContent = "Now Playing: " + name;
-    audio.src = src;
-    audio.play();
+    newAudio.src = src;
+    newAudio.play();
     nowPlaying.style.display = 'flex';
+    
     if (playPauseBtn) {
       playPauseBtn.disabled = false;
       playPauseBtn.classList.remove('disabled-btn');
+      playPauseBtn.innerHTML = '&#x23f8;';
+      playPauseBtn.setAttribute('aria-label', 'Pause');
     }
+
+    // Reset progress bar
+    progressFill.style.width = '0%';
+    timeCurrent.textContent = '0:00';
+    timeDuration.textContent = '--:--';
+
+    // Set up audio event listeners
+    setupAudioEventListeners(newAudio, playPauseBtn, progressBar, progressFill, timeCurrent, timeDuration);
+  }
+
+  function setupAudioEventListeners(audio, playPauseBtn, progressBar, progressFill, timeCurrent, timeDuration) {
+    const vol = document.getElementById('audio-volume');
+
+    // Volume control
+    if (vol) {
+      audio.volume = vol.value;
+      vol.oninput = () => {
+        audio.volume = vol.value;
+      };
+    }
+
+    // Play/Pause button
+    if (playPauseBtn) {
+      playPauseBtn.onclick = () => {
+        if (audio.paused) {
+          audio.play();
+          playPauseBtn.innerHTML = '&#x23f8;';
+          playPauseBtn.setAttribute('aria-label', 'Pause');
+        } else {
+          audio.pause();
+          playPauseBtn.innerHTML = '&#x23f5;';
+          playPauseBtn.setAttribute('aria-label', 'Play');
+        }
+      };
+    }
+
+    // Time update for progress bar
+    audio.ontimeupdate = () => {
+      if (audio.duration) {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressFill.style.width = percent + '%';
+        timeCurrent.textContent = formatTime(audio.currentTime);
+        timeDuration.textContent = formatTime(audio.duration);
+        progressBar.setAttribute('aria-valuenow', Math.floor(percent));
+      }
+    };
+
+    // Progress bar click
+    progressBar.onclick = (e) => {
+      if (!audio.duration) return;
+      const rect = progressBar.getBoundingClientRect();
+      const pos = (e.clientX - rect.left) / rect.width;
+      audio.currentTime = pos * audio.duration;
+    };
+
+    // Progress bar touch
+    progressBar.ontouchstart = (e) => {
+      if (!audio.duration) return;
+      const rect = progressBar.getBoundingClientRect();
+      const pos = (e.touches[0].clientX - rect.left) / rect.width;
+      audio.currentTime = pos * audio.duration;
+      e.preventDefault();
+    };
+
+    // Handle song end
+    audio.onended = () => {
+      playPauseBtn.innerHTML = '&#x23f5;';
+      playPauseBtn.setAttribute('aria-label', 'Play');
+    };
   }
 
   function showAlbum(albumType) {
@@ -436,12 +701,24 @@
     document.querySelector('.album-selection').style.display = 'flex';
     document.getElementById('album-alternate').style.display = 'none';
     document.getElementById('album-original').style.display = 'none';
+    document.getElementById('settings-view').style.display = 'none';
+  }
+
+  function showSettings() {
+    document.querySelector('.album-selection').style.display = 'none';
+    document.getElementById('album-alternate').style.display = 'none';
+    document.getElementById('album-original').style.display = 'none';
+    document.getElementById('settings-view').style.display = 'block';
+    // Sync theme selection
+    const sidebarTheme = document.getElementById('theme-select');
+    const settingsTheme = document.getElementById('theme-select-settings');
+    settingsTheme.value = sidebarTheme.value;
   }
 
   window.addEventListener('DOMContentLoaded', () => {
-    setTheme('system');
-    const sidebarWelcome = document.getElementById('sidebar-welcome');
+    // Check login status first
     const currentUser = localStorage.getItem('bpsb-current');
+    const sidebarWelcome = document.getElementById('sidebar-welcome');
     if (currentUser) {
       document.getElementById('login-modal').style.display = 'none';
       const hour = new Date().getHours();
@@ -459,21 +736,17 @@
       document.getElementById('login-modal').style.display = 'flex';
     }
 
-    if (!document.getElementById('login-email')) {
-      const usernameInput = document.getElementById('login-username');
-      const passwordInput = document.getElementById('login-password');
-      const emailInput = document.createElement('input');
-      emailInput.id = 'login-email';
-      emailInput.type = 'email';
-      emailInput.placeholder = 'Email';
-      emailInput.style = "width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1px solid #ccc;";
-      usernameInput.parentNode.insertBefore(emailInput, passwordInput);
-    }
-    isSignup = true;
-    toggleLoginSignup();
+    // Load saved theme
+    const savedTheme = localStorage.getItem('bpsb-theme') || 'system';
+    setTheme(savedTheme);
+    document.getElementById('theme-select-settings').value = savedTheme;
 
+    // Load saved language
+    const savedLanguage = localStorage.getItem('bpsb-language') || 'en';
+    document.getElementById('language-select').value = savedLanguage;
+
+    // Set up initial audio controls
     const audio = document.getElementById('now-playing-audio');
-    const vol = document.getElementById('audio-volume');
     const playPauseBtn = document.getElementById('play-pause-btn');
     const progressBar = document.getElementById('progress-bar');
     const progressFill = document.getElementById('progress-fill');
@@ -485,60 +758,8 @@
       playPauseBtn.classList.add('disabled-btn');
     }
 
-    if (audio && vol && playPauseBtn && progressBar && progressFill && timeCurrent && timeDuration) {
-      vol.addEventListener('input', () => {
-        audio.volume = vol.value;
-      });
-
-      playPauseBtn.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play();
-        } else {
-          audio.pause();
-        }
-      });
-
-      audio.addEventListener('play', () => {
-        playPauseBtn.innerHTML = '<b>&#8545;</b>';
-        playPauseBtn.setAttribute('aria-label', 'Pause');
-      });
-      audio.addEventListener('pause', () => {
-        playPauseBtn.innerHTML = '&#9658;';
-        playPauseBtn.setAttribute('aria-label', 'Play');
-      });
-
-      audio.addEventListener('timeupdate', () => {
-        if (audio.duration) {
-          const percent = (audio.currentTime / audio.duration) * 100;
-          progressFill.style.width = percent + '%';
-          timeCurrent.textContent = formatTime(audio.currentTime);
-          timeDuration.textContent = formatTime(audio.duration);
-          progressBar.setAttribute('aria-valuenow', Math.floor(percent));
-        }
-      });
-
-      progressBar.addEventListener('click', (e) => {
-        const rect = progressBar.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const width = rect.width;
-        const seekTime = (clickX / width) * audio.duration;
-        audio.currentTime = seekTime;
-      });
-
-      progressBar.addEventListener('keydown', (e) => {
-        if (!audio.duration) return;
-        let seekTime = audio.currentTime;
-        const step = 5;
-        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') {
-          seekTime = Math.min(audio.currentTime + step, audio.duration);
-          audio.currentTime = seekTime;
-          e.preventDefault();
-        } else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') {
-          seekTime = Math.max(audio.currentTime - step, 0);
-          audio.currentTime = seekTime;
-          e.preventDefault();
-        }
-      });
+    if (audio) {
+      setupAudioEventListeners(audio, playPauseBtn, progressBar, progressFill, timeCurrent, timeDuration);
     }
   });
 </script>
@@ -560,15 +781,8 @@
   <div class="sidebar">
     <div>
       <h1 id="sidebar-welcome">benpstokerbeats Streaming</h1>
-      <div class="theme-select">
-        <label for="theme-select">Theme:</label>
-        <select id="theme-select" onchange="setTheme(this.value)">
-          <option value="system" selected>System</option>
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
-        </select>
-      </div>
       <button onclick="backToSelection()" style="margin-top:20px;width:100%;">Home</button>
+      <button onclick="showSettings()" style="margin-top:20px;width:100%;">Settings</button>
       <button onclick="logout()" style="margin-top:20px;width:100%;">Logout</button>
     </div>
     <footer>
@@ -590,51 +804,83 @@
     </div>
   </div>
 
+  <div id="settings-view" class="settings-view" style="display:none;">
+    <h2>Settings</h2>
+    <div class="settings-section">
+      <h3>Appearance</h3>
+      <div class="theme-select-settings">
+        <label for="theme-select-settings">Theme</label>
+        <select id="theme-select-settings" onchange="setTheme(this.value)">
+          <option value="system">System</option>
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+          <option value="ocean">Ocean</option>
+          <option value="sunset">Sunset</option>
+          <option value="emerald">Emerald</option>
+        </select>
+      </div>
+    </div>
+    <div class="settings-section">
+      <h3>General</h3>
+      <div class="language-select-settings">
+        <label for="language-select">Language (not currently working)</label>
+        <select id="language-select" onchange="setLanguage(this.value)">
+          <option value="en">English</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="it">Italiano</option>
+          <option value="pt">Português</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
   <div id="album-alternate" class="album-view" style="display:none;">
     <img src="assets/rainy day album cover deluxe.png" alt="Rainy Day Rainbow: Alternate Skies" class="album-cover">
     <h2>Rainy Day Rainbow: Alternate Skies</h2>
-    <p>benpstokerbeats</p>
+    <p style="margin-bottom: 25px;">benpstokerbeats</p>
     <div class="track-row">
       <div class="track-info">
         <span>1. Rainy Day Rainbow</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#9658;</button>
+      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>2. Cool Summer Nights</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#9658;</button>
+      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>3. Sunny City Day</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#9658;</button>
+      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>4. Rainy Day Rainbow (Slowed)</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Rainy Day Rainbow (Slowed)', 'assets/Rainy Day Rainbow (Slowed).wav')">&#9658;</button>
+      <button onclick="playNow('Rainy Day Rainbow (Slowed)', 'assets/Rainy Day Rainbow (Slowed).wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>5. Rainy Day Rainbow (Original Version)</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Rainy Day Rainbow (Original Version)', 'assets/Rainy Day Rainbow (Original Version).wav')">&#9658;</button>
+      <button onclick="playNow('Rainy Day Rainbow (Original Version)', 'assets/Rainy Day Rainbow (Original Version).wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>6. Cool Summer Nights (Original Version)</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Cool Summer Nights (Original Version)', 'assets/Cool Summer Nights (Original Version).wav')">&#9658;</button>
+      <button onclick="playNow('Cool Summer Nights (Original Version)', 'assets/Cool Summer Nights (Original Version).wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>7. Sunny City Ambience</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Sunny City Ambience', 'assets/Sunny City Ambience.wav')">&#9658;</button>
+      <button onclick="playNow('Sunny City Ambience', 'assets/Sunny City Ambience.wav')">&#x23f5;</button>
     </div>
     <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);">Released December 25, 2024<br/>℗ 2024 Stometheus Records</p>
     <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);"></p>
@@ -644,24 +890,24 @@
   <div id="album-original" class="album-view" style="display:none;">
     <img src="assets/rainy day rainbow album cover.jpeg" alt="Rainy Day Rainbow Album Cover" class="album-cover">
     <h2>Rainy Day Rainbow</h2>
-    <p>benpstokerbeats</p>
+    <p style="margin-bottom: 25px;">benpstokerbeats</p>
     <div class="track-row">
       <div class="track-info">
         <span>1. Rainy Day Rainbow</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#9658;</button>
+      <button onclick="playNow('Rainy Day Rainbow', 'assets/Rainy Day Rainbow.wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>2. Cool Summer Nights</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#9658;</button>
+      <button onclick="playNow('Cool Summer Nights', 'assets/Cool Summer Nights.wav')">&#x23f5;</button>
     </div>
     <div class="track-row">
       <div class="track-info">
         <span>3. Sunny City Day</span> <span class="lossless">(Lossless)</span>
       </div>
-      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#9658;</button>
+      <button onclick="playNow('Sunny City Day', 'assets/Sunny City Day.wav')">&#x23f5;</button>
     </div>
     <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);">Released September 25, 2023<br/>℗ 2023 Stometheus Records</p>
     <p style="margin-top:30px; font-size: 0.9em; color: var(--footer-color);"></p>
@@ -672,7 +918,7 @@
 <div class="now-playing" id="now-playing">
   <div class="track-name" id="current-track">Not Playing</div>
   <div class="now-playing-controls">
-    <button id="play-pause-btn" class="play-pause-btn" aria-label="Play/Pause">&#9658;</button>
+    <button id="play-pause-btn" class="play-pause-btn" aria-label="Play/Pause">&#x23f5;</button>
     <div class="progress-container" aria-label="Audio progress">
       <div class="time-current" id="time-current">--:--</div>
       <div class="progress-bar" id="progress-bar" tabindex="0" role="slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
