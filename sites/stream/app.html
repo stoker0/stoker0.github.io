@@ -883,8 +883,31 @@
     isSignup = false;
     document.getElementById('login-modal').style.display = 'flex';
     updateAllWelcomeText(null);
+    setTheme('system');
     if (window.innerWidth <= 768) {
       toggleSidebar();
+    }
+  }
+
+  let isSignup = true;
+
+  function toggleLoginSignup() {
+    isSignup = !isSignup;
+    const title = document.getElementById('login-title');
+    const emailInput = document.getElementById('login-email');
+    const submitButton = document.querySelector('.form-section button');
+    const toggleLink = document.querySelector('.form-section p a');
+    
+    if (isSignup) {
+      title.textContent = 'Sign Up for benpstokerbeats Streaming';
+      emailInput.style.display = 'block';
+      submitButton.textContent = 'Sign Up';
+      toggleLink.textContent = 'Sign In';
+    } else {
+      title.textContent = 'Sign In to benpstokerbeats Streaming';
+      emailInput.style.display = 'none';
+      submitButton.textContent = 'Sign In';
+      toggleLink.textContent = 'Sign Up';
     }
   }
 
