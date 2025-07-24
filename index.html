@@ -177,6 +177,18 @@
     footer a:hover {
       text-decoration: underline;
     }
+    @media (max-width: 768px) {
+      nav {
+        overflow-x: auto;
+        white-space: nowrap;
+        justify-content: flex-start;
+        padding: 1rem;
+        -webkit-overflow-scrolling: touch;
+      }
+      nav a {
+        flex: 0 0 auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -216,7 +228,7 @@
       <a href="https://distrokid.com/hyperfollow/benpstokerbeats/busy-streets" target="_blank">Stream on all platforms</a>
     </div>
     <div class="glass-card">
-      <h3><em>benpstokerbeats</em>: The Album</h3>
+      <h3>benpstokerbeats: The Album</h3>
       <p>Coming later this year</p>
     </div>
   </section>
