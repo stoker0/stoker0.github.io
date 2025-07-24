@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>benpstokerbeats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-start: #061c19;
+      --bg-mid1: #0a2b27;
+      --bg-mid2: #0e3f3a;
+      --bg-end: #134d44;
+      --glass-bg: rgba(11, 39, 36, 0.3);
+      --glass-border: rgba(255, 255, 255, 0.2);
+      --text: #e0f7f5;
+      --accent: #3bd9c4;
+    }
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 16.5rem;
+        background: linear-gradient(
+            135deg,
+            var(--bg-start) 0%,
+            var(--bg-mid1) 25%,
+            var(--bg-mid2) 60%,
+            var(--bg-end) 100%
+        );
+        z-index: -1;
+    }
+    body {
+      padding-top: 17rem;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(
+        135deg,
+        var(--bg-start) 0%,
+        var(--bg-mid1) 25%,
+        var(--bg-mid2) 60%,
+        var(--bg-end) 100%
+      );
+      color: var(--text);
+      position: relative;
+      z-index: 0;
+    }
+    header {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin: 1rem;
+      z-index: 30;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+    header h1 {
+      margin: 0;
+      color: var(--accent);
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 0.5rem 0 0 0;
+      opacity: 0.8;
+    }
+    nav {
+      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 1rem 0;
+      margin: 0 1rem 1rem 1rem;
+      z-index: 30;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 8px;
+    }
+    nav a:hover {
+      background: rgba(59, 217, 196, 0.2);
+      color: var(--text);
+    }
+    section {
+      scroll-margin-top: 18rem;
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 0;
+    }
+    h2 {
+      border-left: 4px solid var(--accent);
+      padding-left: 0.5rem;
+      color: var(--accent);
+    }
+    .glass-card {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      transition: background 0.4s ease, transform 0.4s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .glass-card:hover {
+      transform: scale(1.015);
+      background: var(--glass-bg);
+      filter: brightness(1.3);
+    }
+    .TopGlassWrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+    }
+    .TopGlassBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 16.5rem;
+      background: rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(14px) saturate(160%);
+      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      z-index: 10;
+      pointer-events: none;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    }
+    .socials a {
+      margin: 0.5rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .socials a:hover {
+      text-decoration: underline;
+    }
+    a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #26bba9;
+      text-decoration: underline;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 2rem;
+      opacity: 0.7;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="TopGlassWrapper">
+    <div class="TopGlassBackground"></div>
+    <header>
+      <h1>benpstokerbeats</h1>
+      <p>official website</p>
+    </header>
+
+    <nav>
+      <a href="#about">About</a>
+      <a href="#music">Music</a>
+      <a href="https://store.benpstokerbeats.com" target="_blank">Merch</a>
+      <a href="#contact">Contact</a>
+      <a href="#links">Follow</a>
+    </nav>
+  </div>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>Producer and beatmaker blending ambient sounds with futuristic beats. I started making music around 2018 and dropped my first official release Rainy Day Rainbow in 2023. My sound has evolved from more experimental music to polished beats with chill, dreamy, and late night energy.<p/>
+    <p>Currently working on a new album with some of my best beats yet. Make sure to follow me to stay updated with my latest music, and check me out on Instagram and YouTube @benpstokerbeats for more content, like music videos and updates.</p>
+    <p>Working on making this website even better. Stay tuned for more updates over the next few days.</p>
+  </section>
+
+  <section id="music">
+    <h2>Music</h2>
+    <div class="glass-card">
+      <h3>Rainy Day Rainbow</h3>
+      <p>2023 original release, 2024 deluxe release</p>
+      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/rainy-day-rainbow-alternate-skies" target="_blank">Stream on all platforms</a>
+    </div>
+    <div class="glass-card">
+      <h3>Busy Streets</h3>
+      <p>The latest single from benpstokerbeats</p>
+      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/busy-streets" target="_blank">Stream on all platforms</a>
+    </div>
+    <div class="glass-card">
+      <h3><em>benpstokerbeats</em>: The Album</h3>
+      <p>Coming later this year</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>General inquiries: <a href="mailto:contact@benpstokerbeats.com">contact@benpstokerbeats.com</a><br />
+       BENPSTOKERSTORE support: <a href="mailto:support@benpstokerbeats.com">support@benpstokerbeats.com</a></p>
+  </section>
+
+  <section id="links">
+    <h2>Follow benpstokerbeats</h2>
+    <div class="socials">
+      <a href="https://bit.ly/m/benpstokerbeats" target="_blank">All Links</a>
+      <a href="https://instagram.com/benpstokerbeats" target="_blank">Instagram</a>
+      <a href="https://soundcloud.com/benpstokerbeats" target="_blank">SoundCloud</a>
+      <a href="https://youtube.com/@benpstokerbeats" target="_blank">YouTube</a>
+      <a href="https://tiktok.com/@benpstokerbeats" target="_blank">TikTok</a>
+      <a href="https://open.spotify.com/artist/09HNnLr4o9a46NcKdyYqVd" target="_blank">Spotify</a>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 benpstokerbeats<br />
+  </footer>
+</body>
+</html>
