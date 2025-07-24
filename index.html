@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>benpstokerbeats</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
   <style>
@@ -31,6 +31,16 @@
             var(--bg-end) 100%
         );
         z-index: -1;
+    }
+    #rain-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    html {
+      scroll-behavior: smooth;
     }
     body {
       padding-top: 17rem;
@@ -94,6 +104,73 @@
       background: rgba(59, 217, 196, 0.2);
       color: var(--text);
     }
+    .settings-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 100;
+    }
+    
+    #settings-btn {
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      backdrop-filter: blur(10px) saturate(150%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    #settings-btn:hover {
+      filter: brightness(1.3);
+      transform: scale(1.05);
+    }
+    .icon {
+      width: 30px;
+      height: 30px;
+    }
+    .glass-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 10px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      transition: background 0.4s ease, transform 0.4s ease;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+    } 
+    .glass-menu button {
+      font-size: 20px;
+      padding: 8px;
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 50%;
+      backdrop-filter: blur(10px) saturate(150%);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease, transform 0.3s ease
+    }
+    .glass-menu button:hover {
+      transform: scale(1.05);
+      filter: brightness(1.3);
+    }
+    .hidden {
+      display: none;
+    }
     section {
       scroll-margin-top: 18rem;
       max-width: 800px;
@@ -119,7 +196,6 @@
     }
     .glass-card:hover {
       transform: scale(1.015);
-      background: var(--glass-bg);
       filter: brightness(1.3);
     }
     .TopGlassWrapper {
@@ -129,6 +205,17 @@
       width: 100%;
       z-index: 20;
     }
+    .TopGlassImageBackground {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 16.5rem;
+      background: url('https://i.ibb.co/pB2p62ph/ps-outpaint-b4e2d2-problembo-co.jpg') center/cover no-repeat;
+      opacity: 0.55;
+      z-index: 5;
+      pointer-events: none;
+    }
     .TopGlassBackground {
       position: fixed;
       top: 0;
@@ -136,8 +223,8 @@
       width: 100%;
       height: 16.5rem;
       background: rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(14px) saturate(160%);
-      -webkit-backdrop-filter: blur(14px) saturate(160%);
+      backdrop-filter: blur(5px) saturate(160%);
+      -webkit-backdrop-filter: blur(5px) saturate(160%);
       z-index: 10;
       pointer-events: none;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
@@ -187,16 +274,19 @@
       }
       nav a {
         flex: 0 0 auto;
-      }
+      }It i
     }
   </style>
 </head>
+
 <body>
+  <canvas id="rain-canvas"></canvas>
   <div class="TopGlassWrapper">
+    <div class="TopGlassImageBackground"></div>
     <div class="TopGlassBackground"></div>
     <header>
       <h1>benpstokerbeats</h1>
-      <p>official website</p>
+      <p id="now-playing-text">Song Playing: skyline (Upcoming Release)</p>
     </header>
 
     <nav>
@@ -208,11 +298,24 @@
     </nav>
   </div>
 
+  <div class="settings-container">
+    <button id="settings-btn">
+      <img src="assets/gear.png" alt="Settings" class="icon" />
+    </button>
+    <div id="settings-menu" class="glass-menu hidden">
+      <button id="toggle-rain" title="Toggle Rain">
+        <img src="assets/rain.png" alt="Rain" class="icon" />
+      </button>
+      <button id="toggle-music" title="Toggle Music">
+        <img src="assets/note.png" alt="Music" class="icon" />
+      </button>
+    </div>
+  </div>
+
   <section id="about">
     <h2>About</h2>
-    <p>Producer and beatmaker blending ambient sounds with futuristic beats. I started making music around 2018 and dropped my first official release Rainy Day Rainbow in 2023. My sound has evolved from more experimental music to polished beats with chill, dreamy, and late night energy.<p/>
+    <p>Producer and beatmaker blending ambient sounds with futuristic beats. I started making music around 2018 and dropped my first official release Rainy Day Rainbow in 2023. My sound has evolved from more experimental music to polished beats with chill, dreamy, and late night energy.</p>
     <p>Currently working on a new album with some of my best beats yet. Make sure to follow me to stay updated with my latest music, and check me out on Instagram and YouTube @benpstokerbeats for more content, like music videos and updates.</p>
-    <p>Working on making this website even better. Stay tuned for more updates over the next few days.</p>
   </section>
 
   <section id="music">
@@ -252,7 +355,112 @@
   </section>
 
   <footer>
-    © 2025 benpstokerbeats<br />
+    © 2025 benpstokerbeats.<br />
   </footer>
+  <script>
+    const canvas = document.getElementById("rain-canvas");
+    const ctx = canvas.getContext("2d");
+  
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+  
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+  
+    const drops = Array.from({ length: 300 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      length: Math.random() * 20 + 15,
+      speed: Math.random() * 4 + 4,
+      opacity: Math.random() * 0.4 + 0.2,
+      width: Math.random() * 0.6 + 0.2
+    }));
+  
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      for (const d of drops) {
+        ctx.strokeStyle = `rgba(200, 200, 255, ${d.opacity})`;
+        ctx.lineWidth = d.width;
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.length);
+      }
+      ctx.stroke();
+  
+      for (const d of drops) {
+        d.y += d.speed;
+        if (d.y > canvas.height) {
+          d.y = -d.length;
+          d.x = Math.random() * canvas.width;
+        }
+      }
+  
+      requestAnimationFrame(animate);
+    }
+  
+    animate();
+
+    const settingsBtn = document.getElementById('settings-btn');
+    const settingsMenu = document.getElementById('settings-menu');
+  
+    const rainToggle = document.getElementById('toggle-rain');
+    const musicToggle = document.getElementById('toggle-music');
+  
+    const rainAudio = new Audio('assets/rain.mp3');
+    rainAudio.loop = true;
+    rainAudio.volume = 0.3;
+  
+    const musicAudio = new Audio('assets/skyline.m4a');
+    musicAudio.loop = true;
+    musicAudio.volume = 1.0;
+  
+    let rainOn = true;
+    let musicOn = true;
+  
+    rainAudio.play();
+    musicAudio.play();
+  
+    settingsBtn.addEventListener('click', () => {
+      settingsMenu.classList.toggle('hidden');
+    });
+  
+    rainToggle.addEventListener('click', () => {
+      rainOn = !rainOn;
+      if (rainOn) {
+        rainAudio.play();
+        document.getElementById('rain-canvas').style.display = 'block';
+      } else {
+        rainAudio.pause();
+        document.getElementById('rain-canvas').style.display = 'none';
+      }
+    });
+  
+    musicToggle.addEventListener('click', () => {
+      musicOn = !musicOn;
+      if (musicOn) {
+        musicAudio.play();
+      } else {
+        musicAudio.pause();
+      }
+    });
+
+    const nowPlayingText = document.getElementById('now-playing-text');
+
+    function updateNowPlayingText() {
+      if (musicAudio.paused) {
+        nowPlayingText.textContent = "Song Playing: (music is turned off)";
+      } else {
+        nowPlayingText.textContent = "Song Playing: skyline (Upcoming Release)";
+      }
+    }
+
+    updateNowPlayingText();
+
+    musicAudio.addEventListener('play', updateNowPlayingText);
+    musicAudio.addEventListener('pause', updateNowPlayingText);
+    musicAudio.addEventListener('ended', updateNowPlayingText);
+  </script>
 </body>
 </html>
