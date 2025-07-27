@@ -264,6 +264,57 @@
     footer a:hover {
       text-decoration: underline;
     }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 10, 15, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+    .popup-box {
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      text-align: center;
+      color: var(--text);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+    .popup-box button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px) saturate(150%);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      color: var(--text);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.4s ease, transform 0.4s ease;
+    }
+    .popup-box button:hover {
+      transform: scale(1.05);
+      filter: brightness(1.3);
+    }
+    .popup-box h2 {
+      border-left: none;
+      padding-left: 0;
+    }
+    .popup-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
     @media (max-width: 768px) {
       nav {
         overflow-x: auto;
@@ -274,7 +325,7 @@
       }
       nav a {
         flex: 0 0 auto;
-      }It i
+      }
     }
   </style>
 </head>
@@ -357,6 +408,18 @@
   <footer>
     © 2025 benpstokerbeats.<br />
   </footer>
+
+  <div id="welcome-popup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>Welcome to benpstokerbeats.com</h2>
+      <p>Select an option to begin your experience</p>
+      <div class="popup-buttons">
+        <button id="start-with-audio">Continue with Sound</button>
+        <button id="start-muted">Continue Muted</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     const canvas = document.getElementById("rain-canvas");
     const ctx = canvas.getContext("2d");
@@ -401,7 +464,7 @@
     }
   
     animate();
-
+  
     const settingsBtn = document.getElementById('settings-btn');
     const settingsMenu = document.getElementById('settings-menu');
   
@@ -410,17 +473,30 @@
   
     const rainAudio = new Audio('assets/rain.mp3');
     rainAudio.loop = true;
-    rainAudio.volume = 0.3;
+    rainAudio.volume = 0.25;
   
     const musicAudio = new Audio('assets/skyline.m4a');
     musicAudio.loop = true;
     musicAudio.volume = 1.0;
   
-    let rainOn = true;
-    let musicOn = true;
+    let rainOn = false;
+    let musicOn = false;
   
-    rainAudio.play();
-    musicAudio.play();
+    const nowPlayingText = document.getElementById('now-playing-text');
+  
+    function updateNowPlayingText() {
+      if (musicAudio.paused) {
+        nowPlayingText.textContent = "Song Playing: (music is turned off)";
+      } else {
+        nowPlayingText.textContent = "Song Playing: skyline (Upcoming Release)";
+      }
+    }
+  
+    updateNowPlayingText();
+  
+    musicAudio.addEventListener('play', updateNowPlayingText);
+    musicAudio.addEventListener('pause', updateNowPlayingText);
+    musicAudio.addEventListener('ended', updateNowPlayingText);
   
     settingsBtn.addEventListener('click', () => {
       settingsMenu.classList.toggle('hidden');
@@ -430,10 +506,10 @@
       rainOn = !rainOn;
       if (rainOn) {
         rainAudio.play();
-        document.getElementById('rain-canvas').style.display = 'block';
+        canvas.style.display = 'block';
       } else {
         rainAudio.pause();
-        document.getElementById('rain-canvas').style.display = 'none';
+        canvas.style.display = 'none';
       }
     });
   
@@ -444,23 +520,34 @@
       } else {
         musicAudio.pause();
       }
+      updateNowPlayingText();
     });
-
-    const nowPlayingText = document.getElementById('now-playing-text');
-
-    function updateNowPlayingText() {
-      if (musicAudio.paused) {
-        nowPlayingText.textContent = "Song Playing: (music is turned off)";
-      } else {
-        nowPlayingText.textContent = "Song Playing: skyline (Upcoming Release)";
-      }
-    }
-
-    updateNowPlayingText();
-
-    musicAudio.addEventListener('play', updateNowPlayingText);
-    musicAudio.addEventListener('pause', updateNowPlayingText);
-    musicAudio.addEventListener('ended', updateNowPlayingText);
+  
+    const welcomePopup = document.getElementById('welcome-popup');
+    const startWithAudio = document.getElementById('start-with-audio');
+    const startMuted = document.getElementById('start-muted');
+  
+    startWithAudio.addEventListener('click', () => {
+      rainOn = true;
+      musicOn = true;
+      rainAudio.play();
+      musicAudio.play().catch(() => {
+        console.warn("Music autoplay was blocked.");
+      });
+      canvas.style.display = 'block';
+      welcomePopup.style.display = 'none';
+      updateNowPlayingText();
+    });
+  
+    startMuted.addEventListener('click', () => {
+      rainOn = false;
+      musicOn = false;
+      canvas.style.display = 'none';
+      welcomePopup.style.display = 'none';
+      updateNowPlayingText();
+    });
+  
+    canvas.style.display = 'none';
   </script>
 </body>
 </html>
