@@ -404,8 +404,8 @@
         </div>
         <div id="email-reveal" class="hidden">
           <p>
-General inquiries: <a id="gen-email" href="#">Loading,,,</a><br />
-BENPSTOKERSTORE support: <a id="store-email" href="#">Loading,..</a>
+General inquiries: <a id="gen-email" href="#">Loading...</a><br />
+BENPSTOKERSTORE support: <a id="store-email" href="#">Loading...</a>
           </p>
         </div>
       </div>
@@ -567,6 +567,9 @@ BENPSTOKERSTORE support: <a id="store-email" href="#">Loading,..</a>
     });
   
     canvas.style.display = 'none';
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
     function showEmails() {
       const genUser = "contact";
       const storeUser = "support";
@@ -584,13 +587,6 @@ BENPSTOKERSTORE support: <a id="store-email" href="#">Loading,..</a>
       storeLink.href = `mailto:${storeEmail}`;
       storeLink.textContent = storeEmail;
 
-      document.getElementById('email-reveal').classList.remove('hidden');
-      document.getElementById('captcha-box').classList.add('hidden');
-    }
-  </script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <script>
-    function showEmails() {
       document.getElementById('email-reveal').classList.remove('hidden');
       document.getElementById('captcha-box').classList.add('hidden');
     }
