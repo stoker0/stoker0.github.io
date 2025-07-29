@@ -403,8 +403,10 @@
           <div class="g-recaptcha" data-sitekey="6LfQh5MrAAAAAKRxjXh1CxMGkI9eXFhWt1ov7pAe" data-callback="showEmails"></div>
         </div>
         <div id="email-reveal" class="hidden">
-          <p>General inquiries: <a href="mailto:contact@benpstokerbeats.com">contact@benpstokerbeats.com</a><br />
-             BENPSTOKERSTORE support: <a href="mailto:support@benpstokerbeats.com">support@benpstokerbeats.com</a></p>
+          <p>
+General inquiries: <a id="gen-email" href="#">Loading,,,</a><br />
+BENPSTOKERSTORE support: <a id="store-email" href="#">Loading,..</a>
+          </p>
         </div>
       </div>
     </div>
@@ -565,6 +567,26 @@
     });
   
     canvas.style.display = 'none';
+    function showEmails() {
+      const genUser = "contact";
+      const storeUser = "support";
+      const domain = "benpstokerbeats.com";
+
+      const genEmail = `${genUser}@${domain}`;
+      const storeEmail = `${storeUser}@${domain}`;
+
+      const genLink = document.getElementById("gen-email");
+      const storeLink = document.getElementById("store-email");
+
+      genLink.href = `mailto:${genEmail}`;
+      genLink.textContent = genEmail;
+
+      storeLink.href = `mailto:${storeEmail}`;
+      storeLink.textContent = storeEmail;
+
+      document.getElementById('email-reveal').classList.remove('hidden');
+      document.getElementById('captcha-box').classList.add('hidden');
+    }
   </script>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
