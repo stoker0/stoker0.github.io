@@ -395,8 +395,18 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>General inquiries: <a href="mailto:contact@benpstokerbeats.com">contact@benpstokerbeats.com</a><br />
-       BENPSTOKERSTORE support: <a href="mailto:support@benpstokerbeats.com">support@benpstokerbeats.com</a></p>
+    <div id="recaptcha-container">
+      <div class="glass-card">
+        <p>To view email addresses, verify you're human:</p>
+        <div id="captcha-box">
+          <div class="g-recaptcha" data-sitekey="6LfQh5MrAAAAAKRxjXh1CxMGkI9eXFhWt1ov7pAe" data-callback="showEmails"></div>
+        </div>
+        <div id="email-reveal" class="hidden">
+          <p>General inquiries: <a href="mailto:contact@benpstokerbeats.com">contact@benpstokerbeats.com</a><br />
+             BENPSTOKERSTORE support: <a href="mailto:support@benpstokerbeats.com">support@benpstokerbeats.com</a></p>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="links">
@@ -554,6 +564,13 @@
     });
   
     canvas.style.display = 'none';
+  </script>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    function showEmails() {
+      document.getElementById('email-reveal').classList.remove('hidden');
+      document.getElementById('captcha-box').classList.add('hidden');
+    }
   </script>
 </body>
 </html>
