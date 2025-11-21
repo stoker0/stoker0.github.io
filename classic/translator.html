@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IPA → Stokrian Translator</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+  <h1>IPA → Stokrian Translator</h1>
+  <p>Paste IPA text below and click translate to see it written in the Stokrian Alphabet.</p>
+
+  <textarea id="input" placeholder="Enter IPA here..."></textarea>
+  <br>
+  <button onclick="translate()">Translate</button>
+
+  <div class="output" id="output"></div>
+
+  <footer>
+    &copy; 2025 Stokrian Project. All rights reserved.
+  </footer>
+
+  <script>
+    const ipaToStokrian = {
+      "ɑ": "a", "æ": "ä", "eɪ": "æ", "ɛ": "e",
+      "ɪ": "i", "iː": "ī", "aɪ": "ï",
+      "oʊ": "o", "aʊ": "ö", "ɔɪ": "œ",
+      "ʌ": "u", "ʊ": "ü", "uː": "ū",
+      "ð": "ð", "θ": "þ", "ʃ": "š", "ʒ": "ž",
+      "ŋ": "ŋ", "dʒ": "j", "tʃ": "c",
+      "ɹ": "r", "ə": "ə"
+      // add more mappings as needed
+    };
+
+    function translate() {
+      let text = document.getElementById("input").value;
+
+      // replace longer sequences first (like tʃ, dʒ, eɪ, etc.)
+      const orderedKeys = Object.keys(ipaToStokrian)
+        .sort((a, b) => b.length - a.length);
+
+      for (const key of orderedKeys) {
+        const value = ipaToStokrian[key];
+        const regex = new RegExp(key, "g");
+        text = text.replace(regex, value);
+      }
+
+      document.getElementById("output").innerText = text;
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog - benpstokerbeats</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/style.css" />
+</head>
+<body>
+  <canvas id="rain-canvas"></canvas>
+  <div class="TopGlassWrapper">
+    <div class="TopGlassImageBackground"></div>
+    <div class="TopGlassBackground"></div>
+    <header>
+      <h1>benpstokerbeats</h1>
+      <p id="now-playing-text">Song Playing: skyline (Upcoming Release)</p>
+    </header>
+
+    <nav>
+      <a href="../index.html#about">About</a>
+      <a href="../index.html#music">Music</a>
+      <a href="https://store.benpstokerbeats.com" target="_blank">Merch</a>
+      <a href="../index.html#contact">Contact</a>
+      <a href="../index.html#links">Follow</a>
+    </nav>
+  </div>
+
+  <div class="settings-container">
+    <button id="settings-btn">
+      <img src="../assets/gear.png" alt="Settings" class="icon" />
+    </button>
+    <div id="settings-menu" class="glass-menu hidden">
+      <button id="toggle-rain" title="Toggle Rain">
+        <img src="../assets/rain.png" alt="Rain" class="icon" />
+      </button>
+      <button id="toggle-music" title="Toggle Music">
+        <img src="../assets/note.png" alt="Music" class="icon" />
+      </button>
+    </div>
+  </div>
+
+  <section id="blog">
+    <h2>Posts</h2>
+
+    <div class="glass-card">
+      <h3><a href="busy-streets-behind-the-beat.html">🎧 Behind the Beat: Busy Streets</a></h3>
+      <p>July 2025 — How a rainy night and a walk downtown inspired this ambient banger.</p>
+    </div>
+
+    <div class="glass-card">
+      <h3><a href="rainy-day-retrospective.html">☔ Rainy Day Rainbow: A Retrospective</a></h3>
+      <p>April 2025 — A deep dive into the vibes, sounds, and growth behind my debut release.</p>
+    </div>
+
+    <!-- Add more posts like this as needed -->
+  </section>
+
+  <footer>
+    © 2025 benpstokerbeats.<br/>
+  </footer>
+
+  <div id="welcome-popup" class="popup-overlay">
+    <div class="popup-box">
+      <h2>Welcome to benpstokerbeats.com</h2>
+      <p>Select an option to begin your experience</p>
+      <div class="popup-buttons">
+        <button id="start-with-audio">Continue with Sound</button>
+        <button id="start-muted">Continue Muted</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS copied from your main index.html -->
+  <script>
+    const canvas = document.getElementById("rain-canvas");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resizeCanvas);
+    resizeCanvas();
+
+    const drops = Array.from({ length: 300 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      length: Math.random() * 20 + 15,
+      speed: Math.random() * 4 + 4,
+      opacity: Math.random() * 0.4 + 0.2,
+      width: Math.random() * 0.6 + 0.2
+    }));
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      for (const d of drops) {
+        ctx.strokeStyle = `rgba(200, 200, 255, ${d.opacity})`;
+        ctx.lineWidth = d.width;
+        ctx.moveTo(d.x, d.y);
+        ctx.lineTo(d.x, d.y + d.length);
+      }
+      ctx.stroke();
+
+      for (const d of drops) {
+        d.y += d.speed;
+        if (d.y > canvas.height) {
+          d.y = -d.length;
+          d.x = Math.random() * canvas.width;
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+
+    const settingsBtn = document.getElementById('settings-btn');
+    const settingsMenu = document.getElementById('settings-menu');
+
+    const rainToggle = document.getElementById('toggle-rain');
+    const musicToggle = document.getElementById('toggle-music');
+
+    const rainAudio = new Audio('../assets/rain.mp3');
+    rainAudio.loop = true;
+    rainAudio.volume = 0.25;
+
+    const musicAudio = new Audio('../assets/skyline.m4a');
+    musicAudio.loop = true;
+    musicAudio.volume = 1.0;
+
+    let rainOn = false;
+    let musicOn = false;
+
+    const nowPlayingText = document.getElementById('now-playing-text');
+
+    function updateNowPlayingText() {
+      if (musicAudio.paused) {
+        nowPlayingText.textContent = "Song Playing: (music is turned off)";
+      } else {
+        nowPlayingText.textContent = "Song Playing: skyline (Upcoming Release)";
+      }
+    }
+
+    updateNowPlayingText();
+
+    musicAudio.addEventListener('play', updateNowPlayingText);
+    musicAudio.addEventListener('pause', updateNowPlayingText);
+    musicAudio.addEventListener('ended', updateNowPlayingText);
+
+    settingsBtn.addEventListener('click', () => {
+      settingsMenu.classList.toggle('hidden');
+    });
+
+    rainToggle.addEventListener('click', () => {
+      rainOn = !rainOn;
+      if (rainOn) {
+        rainAudio.play();
+        canvas.style.display = 'block';
+      } else {
+        rainAudio.pause();
+        canvas.style.display = 'none';
+      }
+    });
+
+    musicToggle.addEventListener('click', () => {
+      musicOn = !musicOn;
+      if (musicOn) {
+        musicAudio.play();
+      } else {
+        musicAudio.pause();
+      }
+      updateNowPlayingText();
+    });
+
+    const welcomePopup = document.getElementById('welcome-popup');
+    const startWithAudio = document.getElementById('start-with-audio');
+    const startMuted = document.getElementById('start-muted');
+
+    startWithAudio.addEventListener('click', () => {
+      rainOn = true;
+      musicOn = true;
+      rainAudio.play();
+      musicAudio.play().catch(() => {
+        console.warn("Music autoplay was blocked.");
+      });
+      canvas.style.display = 'block';
+      welcomePopup.style.display = 'none';
+      updateNowPlayingText();
+    });
+
+    startMuted.addEventListener('click', () => {
+      rainOn = false;
+      musicOn = false;
+      canvas.style.display = 'none';
+      welcomePopup.style.display = 'none';
+      updateNowPlayingText();
+    });
+
+    canvas.style.display = 'none';
+  </script>
+</body>
+</html>
