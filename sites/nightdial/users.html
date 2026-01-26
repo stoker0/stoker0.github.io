@@ -8,19 +8,25 @@
 <body>
 
 <div class="wrap">
-  <h2>User Pages</h2>
-  <p class="dim">Personal corners of the night.</p>
-
-  <ul>
-    <li>neonrain</li>
-    <li>cityghost</li>
-    <li>staticdream</li>
-  </ul>
+  <div id="userbar" class="nav"></div>
+  <h2>Users Online Tonight</h2>
+  <p id="countdown" class="dim"></p>
+  <div id="list"></div>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="assets/script.js"></script>
 <script>
-  loadUser();
+async function loadUsers() {
+  const { data } = await supabaseClient
+    .from("profiles")
+    .select("username");
+
+  list.innerHTML = data.map(u => `<p>${u.username}</p>`).join("");
+}
+
+initNightDial();
+loadUsers();
 </script>
 </body>
 </html>

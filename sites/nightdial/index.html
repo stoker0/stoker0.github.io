@@ -7,30 +7,22 @@
 </head>
 <body>
 
-<div class="wrap center">
+<div class="wrap">
+  <div id="userbar" class="nav"></div>
   <h1>NightDial</h1>
-  <marquee scrollamount="3">A place to be online when the world is asleep</marquee>
-
-  <div class="nav">
-    <a href="forums.html">Forums</a>
-    <a href="chat.html">Chat</a>
-    <a href="users.html">User Pages</a>
-    <a href="login.html">Login</a>
-  </div>
+  <p id="status"></p>
+  <p id="countdown" class="dim"></p>
 
   <hr>
 
-  <p id="status"></p>
-  <p class="dim">Best viewed late.</p>
+  <a href="forums.html">Forums</a> ·
+  <a href="chat.html">Chat</a> ·
+  <a href="users.html">Users</a>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="assets/script.js"></script>
-<script>
-  const night = applyTimeTheme();
-  document.getElementById("status").innerText =
-    night ? "NightDial is online." : "NightDial is offline. Come back after dark.";
-  loadUser();
-</script>
+<script>initNightDial();</script>
 
 </body>
 </html>

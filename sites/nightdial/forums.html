@@ -8,31 +8,40 @@
 <body>
 
 <div class="wrap">
+  <div id="userbar" class="nav"></div>
   <h2>Forums</h2>
-  <p class="dim">Slow conversations.</p>
+  <p id="countdown" class="dim"></p>
 
-  <hr>
+  <div id="posts"></div>
 
-  <ul>
-    <li>Late Night Thoughts</li>
-    <li>Music & Sounds</li>
-    <li>Personal Journals</li>
-    <li>Random</li>
-  </ul>
-
-  <p id="lockNotice" class="dim"></p>
+  <input id="postText" placeholder="say something">
+  <br><br>
+  <button onclick="post()">Post</button>
 </div>
 
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script src="assets/script.js"></script>
 <script>
-  const night = applyTimeTheme();
-  if (!night) {
-    document.getElementById("lockNotice").innerText =
-      "The forums are archived during the day.";
-  }
-  requireLogin();
-  loadUser();
-</script>
+async function post() {
+  const { data: { session } } = await supabaseClient.auth.getSession();
+  await supabaseClient.from("posts").insert({
+    user_id: session.user.id,
+    content: postText.value
+  });
+  location.reload();
+}
 
+async function loadPosts() {
+  const { data } = await supabaseClient
+    .from("posts")
+    .select("content, created_at")
+    .order("created_at", { ascending: false });
+
+  posts.innerHTML = data.map(p => `<p>${p.content}</p>`).join("");
+}
+
+initNightDial();
+loadPosts();
+</script>
 </body>
 </html>
