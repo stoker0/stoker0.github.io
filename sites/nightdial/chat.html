@@ -21,6 +21,8 @@
   const night = applyTimeTheme();
   document.getElementById("chatStatus").innerText =
     night ? "The room is open." : "Chat sleeps until night.";
+  requireLogin();
+  loadUser();
 </script>
 
 </body>

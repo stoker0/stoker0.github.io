@@ -10,6 +10,7 @@
 <div class="wrap center">
   <h2>Login</h2>
 
+  <input id="username" placeholder="username (sign up only)"><br><br>
   <input id="email" placeholder="email"><br><br>
   <input id="password" type="password" placeholder="password"><br><br>
 
@@ -51,16 +52,29 @@ document.getElementById("loginBtn").onclick = async () => {
 document.getElementById("signupBtn").onclick = async () => {
   msg.textContent = "Creating account…";
 
-  const { error } = await supabaseClient.auth.signUp({
+  const { data, error } = await supabaseClient.auth.signUp({
     email: email.value,
     password: password.value
   });
 
   if (error) {
     msg.textContent = error.message;
-  } else {
-    msg.textContent = "Account created. You can log in now.";
+    return;
   }
+
+  const { error: profileError } = await supabaseClient
+    .from("profiles")
+    .insert({
+      id: data.user.id,
+      username: username.value
+    });
+
+  if (profileError) {
+    msg.textContent = profileError.message;
+    return;
+  }
+
+  msg.textContent = "Account created. You can log in now.";
 };
 </script>
 
