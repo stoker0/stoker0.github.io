@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NightDial – Chat</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="wrap">
+  <h2>Live Chat</h2>
+  <p class="dim">Say something, or don’t.</p>
+
+  <hr>
+
+  <p id="chatStatus"></p>
+</div>
+
+<script src="assets/script.js"></script>
+<script>
+  const night = applyTimeTheme();
+  document.getElementById("chatStatus").innerText =
+    night ? "The room is open." : "Chat sleeps until night.";
+</script>
+
+</body>
+</html>

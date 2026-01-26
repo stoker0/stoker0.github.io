@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>NightDial – Login</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+
+<div class="wrap center">
+  <h2>Login</h2>
+
+  <input id="email" placeholder="email"><br><br>
+  <input id="password" type="password" placeholder="password"><br><br>
+
+  <button id="loginBtn">Login</button>
+
+  <p class="dim">Accounts wake up at night.</p>
+</div>
+
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="assets/script.js"></script>
+<script>
+  const supabase = supabaseJs.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+  document.getElementById("loginBtn").onclick = async () => {
+    const email = email.value;
+    const password = password.value;
+
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) alert(error.message);
+    else location.href = "index.html";
+  };
+</script>
+
+</body>
+</html>
