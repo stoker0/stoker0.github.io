@@ -12,7 +12,11 @@ const supabaseClient = supabase.createClient(
 
 const LOCATION_TTL = 1000 * 60 * 60 * 24; // 24h
 
-async function getLocation() {
+async function getLocation(force = false) {
+  if (force) {
+    localStorage.removeItem("nd_location");
+  }
+
   const cached = JSON.parse(localStorage.getItem("nd_location"));
   if (cached && Date.now() - cached.time < LOCATION_TTL) {
     return cached;
@@ -29,8 +33,14 @@ async function getLocation() {
         localStorage.setItem("nd_location", JSON.stringify(loc));
         resolve(loc);
       },
-      () => reject("Location required"),
-      { enableHighAccuracy: false, timeout: 10000 }
+      err => {
+        reject(err);
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 15000,
+        maximumAge: 0
+      }
     );
   });
 }
@@ -75,8 +85,14 @@ function startCountdown(nextTime) {
 /* =============== USER ================= */
 
 async function loadUser() {
+  const bar = document.getElementById("userbar");
+
   const { data: { session } } = await supabaseClient.auth.getSession();
-  if (!session) return;
+
+  if (!session) {
+    bar.innerHTML = `<a href="login.html">login</a>`;
+    return;
+  }
 
   const { data: profile } = await supabaseClient
     .from("profiles")
@@ -114,10 +130,22 @@ async function initNightDial() {
     document.body.innerHTML = `
       <div class="wrap">
         <h2>Location Required</h2>
-        <p>NightDial needs your location to know when night begins.</p>
-        <button onclick="location.reload()">Retry</button>
+        <p>
+          NightDial needs your location to know when night begins.<br>
+          Please allow location access, then click retry.
+        </p>
+        <button id="retryBtn">Retry</button>
       </div>
     `;
+
+    document.getElementById("retryBtn").onclick = async () => {
+      try {
+        await getLocation(true); // FORCE retry
+        location.reload();
+      } catch {
+        alert("Location still unavailable. Please check browser settings.");
+      }
+    };
   }
 
   loadUser();
