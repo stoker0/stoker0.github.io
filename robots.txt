@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: /classic/
+Disallow: /sites/
+Disallow: /blog/
 
 Sitemap: https://www.benpstokerbeats.com/sitemap.xml
