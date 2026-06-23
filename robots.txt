@@ -1,5 +1,4 @@
 User-agent: *
 Disallow: /sites/
-Disallow: /blog/
 
-Sitemap: https://www.benpstokerbeats.com/sitemap.xml
+Sitemap: https://www.benpstoker.com/sitemap.xml
