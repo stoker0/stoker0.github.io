@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>benpstokerbeats</title>
+  <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css"/>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 12vw;
+      background: #0b0f14;
+      color: #d6e2ff;
+      font-family: century-gothic, sans-serif;
+      line-height: 1.6;
+    }
+    h1, h2 {
+      color: #4da3ff;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    a {
+      color: #4da3ff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .menu {
+      position: sticky;
+      top: 0;
+      background: #0b0f14;
+      padding: 15px 0;
+      border-bottom: 1px solid #1c2a3a;
+      margin-bottom: 40px;
+    }
+    .menu a {
+      margin-right: 20px;
+      font-size: 14px;
+    }
+    .section {
+      margin-bottom: 45px;
+    }
+    .small {
+      color: #8aa4c7;
+      font-size: 14px;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #1c2a3a;
+      margin: 40px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu">
+    <a href="#about">About</a>
+    <a href="#music">Music</a>
+    <a href="#contact">Contact</a>
+    <a href="#links">Links</a>
+  </div>
+  <h1>benpstokerbeats</h1>
+  <p class="small">Official Website</p>
+  <hr>
+  <div id="about" class="section">
+    <h2>About</h2>
+    <p>This site is currently being updated.</p>
+    <p>Producer and beatmaker blending ambient sounds with futuristic beats. I started making music around 2018 and dropped my first official release Rainy Day Rainbow in 2023. My sound has evolved from more experimental music to polished beats with chill, dreamy, and late night energy.</p>
+    <p>Currently working on a new album with some of my best beats yet. Make sure to follow me to stay updated with my latest music, and check me out on Instagram and YouTube @benpstokerbeats for more content, like music videos and updates.</p>
+  </div>
+  <div id="music" class="section">
+    <h2>Music</h2>
+    <p>
+      <b>Rainy Day Rainbow (Versions + Extras)</b><br>
+      An expanded edition of the original 3 tracks with alternate versions and new songs<br>
+      <a href="https://soundcloud.com/benpstokerbeats/sets/rainy-day-rainbow-versions-extras">Stream on SoundCloud</a>
+    </p>
+    <p>
+      <b>Sunny City Ambience</b><br>
+      An ambient piece from Versions + Extras released as a single<br>
+      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/sunny-city-ambience">Stream on all platforms</a>
+    </p>
+    <p>
+      <b>Fading Lights</b><br>
+      The latest single from benpstokerbeats<br>
+      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/fading-lights">Stream on all platforms</a>
+    </p>
+  </div>
+  <div id="contact" class="section">
+    <h2>Contact</h2>
+    <div id="captcha-box">
+      <p class="small">Verify to reveal contact emails:</p>
+      <div class="g-recaptcha" data-sitekey="6LeZ4DAtAAAAALf4c95POAF3-F0EsKxbhZmRXKdz" data-callback="showEmails"></div>
+    </div>
+    <div id="email-reveal" style="display:none;">
+      <p>
+        General inquiries:
+        <a id="gen-email" href="#">loading...</a><br>
+        Store support:
+        <a id="store-email" href="#">loading...</a>
+      </p>
+    </div>
+  </div>
+  <div id="links" class="section">
+    <h2>Links</h2>
+    <p>
+      <a href="https://open.spotify.com/artist/09HNnLr4o9a46NcKdyYqVd">Spotify</a><br>
+      <a href="https://music.apple.com/us/artist/benpstokerbeats/1814027018">Apple Music</a><br>
+      <a href="https://youtube.com/@benpstokerbeats">YouTube</a><br>
+      <a href="https://soundcloud.com/benpstokerbeats">SoundCloud</a><br>
+      <a href="https://instagram.com/benpstokerbeats">Instagram</a><br>
+      <a href="https://tiktok.com/@benpstokerbeats">TikTok</a><br>
+      <a href="https://store.benpstoker.com">Merch</a>
+    </p>
+  </div>
+  <hr>
+  <p class="small">© 2026 Benjamin P. Stoker. All rights reserved.</p>
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <script>
+    function showEmails() {
+      const genUser = "contact";
+      const storeUser = "store";
+      const domain = "benpstoker.com";
+      const genEmail = `${genUser}@${domain}`;
+      const storeEmail = `${storeUser}@${domain}`;
+      const genLink = document.getElementById("gen-email");
+      const storeLink = document.getElementById("store-email");
+      genLink.href = `mailto:${genEmail}`;
+      genLink.textContent = genEmail;
+      storeLink.href = `mailto:${storeEmail}`;
+      storeLink.textContent = storeEmail;
+      document.getElementById("email-reveal").style.display = "block";
+      document.getElementById("captcha-box").style.display = "none";
+    }
+  </script>
+</body>
+</html>
