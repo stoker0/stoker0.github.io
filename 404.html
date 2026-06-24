@@ -4,25 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 · Page not found</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-    <link rel="shortcut icon" href="assets/favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="benpstokerbeats" />
-    <link rel="manifest" href="assets/site.webmanifest" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         :root {
             --background: #060608;
             --color: #FAFAFA;
         }
-
         html, body {
             width: 100%;
             height: 100%;
@@ -33,18 +25,15 @@
             align-items: center;
             flex-direction: column;
         }
-
         .container {
             color: var(--color);
             text-align: center;
         }
-
         .stack {
             display: grid;
             grid-template-columns: 1fr;
             position: relative;
         }
-
         .stack span {
             font-family: 'Inter', sans-serif;
             font-weight: 200;
@@ -60,10 +49,8 @@
             clip-path: inset(var(--clip-top) 0 var(--clip-bottom) 0);
             animation: stack 400ms cubic-bezier(.46,.29,0,1.24) 1 backwards calc(var(--index) * 120ms), glitch 2s ease infinite 2s alternate-reverse;
         }
-
         .stack span:nth-child(odd) { --glitch-translate: 10px; }
         .stack span:nth-child(even) { --glitch-translate: -10px; }
-
         @keyframes stack {
             0% {
                 opacity: 0;
@@ -83,7 +70,6 @@
                 text-shadow: none;
             }
         }
-
         @keyframes glitch {
             0% {
                 text-shadow: -2px 3px 0 red, 2px -3px 0 blue;
@@ -97,7 +83,6 @@
                 transform: none; 
             }
         }
-
         p {
             font-family: 'Inter', sans-serif;
             font-weight: 200;
@@ -105,14 +90,12 @@
             margin-top: 10px;
             opacity: 0.8;
         }
-
         .logo-container {
             position: absolute;
             bottom: 10px;
             width: 100%;
             text-align: center;
         }
-
         .logo-container img {
             width: 120px;
             opacity: 0.8;

@@ -1,287 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>benpstokerbeats</title>
-  <meta name="title" content="benpstokerbeats" />
-  <meta name="description" content="The official website of benpstokerbeats. Discover music releases, stream on all platforms, get in touch, and follow everywhere. Plus, check out exclusive merch." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.benpstoker.com/" />
-  <meta property="og:title" content="benpstokerbeats" />
-  <meta property="og:description" content="The official website of benpstokerbeats. Discover music releases, stream on all platforms, get in touch, and follow everywhere. Plus, check out exclusive merch." />
-  <meta property="og:image" content="https://www.benpstoker.com/assets/skyline.jpg" />
-  <meta property="twitter:card" content="summary_large_image" />
-  <meta property="twitter:url" content="https://www.benpstoker.com/" />
-  <meta property="twitter:title" content="benpstokerbeats" />
-  <meta property="twitter:description" content="The official website of benpstokerbeats. Discover music releases, stream on all platforms, get in touch, and follow everywhere. Plus, check out exclusive merch." />
-  <meta property="twitter:image" content="https://www.benpstoker.com/assets/skyline.jpg" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="shortcut icon" href="assets/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png" />
-  <meta name="apple-mobile-web-app-title" content="benpstokerbeats" />
-  <link rel="manifest" href="assets/site.webmanifest" />
-  <link rel="stylesheet" href="assets/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Ben Stoker</title>
+  <link rel="stylesheet" href="https://use.typekit.net/oov2wcw.css"/>
+  <link rel="stylesheet" href="assets/style.css"/>
 </head>
-
 <body>
-  <canvas id="rain-canvas"></canvas>
-  <div class="TopGlassWrapper">
-    <div class="TopGlassImageBackground"></div>
-    <div class="TopGlassBackground"></div>
-    <header>
-      <h1>benpstokerbeats</h1>
-      <p id="now-playing-text">Song Playing: skyline (Upcoming Release)</p>
-    </header>
-
-    <nav>
-      <a href="#about">About</a>
-      <a href="#music">Music</a>
-      <a href="https://store.benpstoker.com" target="_blank">Merch</a>
-      <a href="#contact">Contact</a>
-      <a href="#links">Follow</a>
-    </nav>
+  <div class="menu">
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
   </div>
-
-  <div class="settings-container">
-    <button id="settings-btn">
-      <img src="assets/gear.png" alt="Settings" class="icon" />
-    </button>
-    <div id="settings-menu" class="glass-menu hidden">
-      <button id="toggle-rain" title="Toggle Rain">
-        <img src="assets/rain.png" alt="Rain" class="icon" />
-      </button>
-      <button id="toggle-music" title="Toggle Music">
-        <img src="assets/note.png" alt="Music" class="icon" />
-      </button>
-    </div>
+  <h1>Ben Stoker</h1>
+  <p class="small">My Homepage</p>
+  <hr>
+  <div id="projects" class="section">
+    <h2>Projects</h2>
+    <p>
+      <a href="bpsbeats/index.html">benpstokerbeats</a><br>
+      Chill electronic/ambient music project.
+    </p>
+    <p>
+      <a href="https://store.benpstoker.com">BENPSTOKERSTORE</a><br>
+      Official merch and products.
+    </p>
   </div>
-
-  <section id="about">
-    <h2>About</h2>
-    <div class="glass-card">
-      <p>This site is currently being updated.</p>
-      <p>Producer and beatmaker blending ambient sounds with futuristic beats. I started making music around 2018 and dropped my first official release Rainy Day Rainbow in 2023. My sound has evolved from more experimental music to polished beats with chill, dreamy, and late night energy.</p>
-      <p>Currently working on a new album with some of my best beats yet. Make sure to follow me to stay updated with my latest music, and check me out on Instagram and YouTube @benpstokerbeats for more content, like music videos and updates.</p>
-    </div>
-  </section>
-
-  <section id="music">
-    <h2>Music</h2>
-    <div class="glass-card">
-      <h3>Rainy Day Rainbow (Versions + Extras)</h3>
-      <p>An expanded edition of the original 3 tracks with alternate versions and new songs</p>
-      <a href="https://soundcloud.com/benpstokerbeats/sets/rainy-day-rainbow-versions-extras" target="_blank">Stream on SoundCloud</a>
-    </div>
-    <div class="glass-card">
-      <h3>Sunny City Ambience</h3>
-      <p>An ambient piece from Versions + Extras released as a single</p>
-      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/sunny-city-ambience" target="_blank">Stream on all platforms</a>
-    </div>
-    <div class="glass-card">
-      <h3>Fading Lights</h3>
-      <p>The latest single from benpstokerbeats</p>
-      <a href="https://distrokid.com/hyperfollow/benpstokerbeats/fading-lights" target="_blank">Stream on all platforms</a>
-    </div>
-  </section>
-
-  <section id="contact">
+  <div id="contact" class="section">
     <h2>Contact</h2>
-    <div id="recaptcha-container">
-      <div class="glass-card">
-        <div id="captcha-box">
-          <div class="g-recaptcha" data-sitekey="6LeZ4DAtAAAAALf4c95POAF3-F0EsKxbhZmRXKdz" data-callback="showEmails"></div>
-        </div>
-        <div id="email-reveal" class="hidden">
-          <p>
-General inquiries: <a id="gen-email" href="#">Visit the site to view this email. If you're already on the site, try reloading.</a><br>
-BENPSTOKERSTORE support: <a id="store-email" href="#">Visit the site to view this email. If you're already on the site, try reloading.</a>
-          </p>
-        </div>
-      </div>
+    <div id="captcha-box">
+      <p class="small">Verify to reveal contact emails:</p>
+      <div class="g-recaptcha" data-sitekey="6LeZ4DAtAAAAALf4c95POAF3-F0EsKxbhZmRXKdz" data-callback="showEmails"></div>
     </div>
-  </section>
-
-  <section id="links">
-    <h2>Follow benpstokerbeats</h2>
-    <div class="socials">
-      <a href="https://bit.ly/m/benpstokerbeats" target="_blank">All Links</a>
-      <a href="https://instagram.com/benpstokerbeats" target="_blank">Instagram</a>
-      <a href="https://soundcloud.com/benpstokerbeats" target="_blank">SoundCloud</a>
-      <a href="https://youtube.com/@benpstokerbeats" target="_blank">YouTube</a>
-      <a href="https://tiktok.com/@benpstokerbeats" target="_blank">TikTok</a>
-      <a href="https://open.spotify.com/artist/09HNnLr4o9a46NcKdyYqVd" target="_blank">Spotify</a>
-    </div>
-  </section>
-
-  <footer>
-    © 2026 benpstokerbeats.<br>
-    Last updated 6/23/2026 at 8:36 PM EDT<br>
-  </footer>
-
-  <div id="welcome-popup" class="popup-overlay">
-    <div class="popup-box">
-      <h2>Welcome to benpstoker.com</h2>
-      <p>Select an option to begin your experience</p>
-      <div class="popup-buttons">
-        <button id="start-with-audio">Continue with Sound</button>
-        <button id="start-muted">Continue Muted</button>
-      </div>
+    <div id="email-reveal" style="display:none;">
+      <p>
+        General inquiries:
+        <a id="gen-email" href="#">loading...</a><br>
+        Store support:
+        <a id="store-email" href="#">loading...</a>
+      </p>
     </div>
   </div>
-
-  <script>
-    const canvas = document.getElementById("rain-canvas");
-    const ctx = canvas.getContext("2d");
-  
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-  
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
-  
-    const drops = Array.from({ length: 300 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      length: Math.random() * 20 + 15,
-      speed: Math.random() * 4 + 4,
-      opacity: Math.random() * 0.4 + 0.2,
-      width: Math.random() * 0.6 + 0.2
-    }));
-  
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.beginPath();
-      for (const d of drops) {
-        ctx.strokeStyle = `rgba(200, 200, 255, ${d.opacity})`;
-        ctx.lineWidth = d.width;
-        ctx.moveTo(d.x, d.y);
-        ctx.lineTo(d.x, d.y + d.length);
-      }
-      ctx.stroke();
-  
-      for (const d of drops) {
-        d.y += d.speed;
-        if (d.y > canvas.height) {
-          d.y = -d.length;
-          d.x = Math.random() * canvas.width;
-        }
-      }
-  
-      requestAnimationFrame(animate);
-    }
-  
-    animate();
-  
-    const settingsBtn = document.getElementById('settings-btn');
-    const settingsMenu = document.getElementById('settings-menu');
-  
-    const rainToggle = document.getElementById('toggle-rain');
-    const musicToggle = document.getElementById('toggle-music');
-  
-    const rainAudio = new Audio('assets/rain.mp3');
-    rainAudio.loop = true;
-    rainAudio.volume = 0.4;
-  
-    const musicAudio = new Audio('assets/skyline.mp3');
-    musicAudio.loop = true;
-    musicAudio.volume = 1.0;
-  
-    let rainOn = false;
-    let musicOn = false;
-  
-    const nowPlayingText = document.getElementById('now-playing-text');
-  
-    function updateNowPlayingText() {
-      if (musicAudio.paused) {
-        nowPlayingText.textContent = "Song Playing: (music is turned off)";
-      } else {
-        nowPlayingText.textContent = "Song Playing: skyline (Upcoming Release)";
-      }
-    }
-  
-    updateNowPlayingText();
-  
-    musicAudio.addEventListener('play', updateNowPlayingText);
-    musicAudio.addEventListener('pause', updateNowPlayingText);
-    musicAudio.addEventListener('ended', updateNowPlayingText);
-  
-    settingsBtn.addEventListener('click', () => {
-      settingsMenu.classList.toggle('hidden');
-    });
-  
-    rainToggle.addEventListener('click', () => {
-      rainOn = !rainOn;
-      if (rainOn) {
-        rainAudio.play();
-        canvas.style.display = 'block';
-      } else {
-        rainAudio.pause();
-        canvas.style.display = 'none';
-      }
-    });
-  
-    musicToggle.addEventListener('click', () => {
-      musicOn = !musicOn;
-      if (musicOn) {
-        musicAudio.play();
-      } else {
-        musicAudio.pause();
-      }
-      updateNowPlayingText();
-    });
-  
-    const welcomePopup = document.getElementById('welcome-popup');
-    const startWithAudio = document.getElementById('start-with-audio');
-    const startMuted = document.getElementById('start-muted');
-  
-    startWithAudio.addEventListener('click', () => {
-      rainOn = true;
-      musicOn = true;
-      rainAudio.play();
-      musicAudio.play().catch(() => {
-        console.warn("Music autoplay was blocked.");
-      });
-      canvas.style.display = 'block';
-      welcomePopup.style.display = 'none';
-      updateNowPlayingText();
-    });
-  
-    startMuted.addEventListener('click', () => {
-      rainOn = false;
-      musicOn = false;
-      canvas.style.display = 'none';
-      welcomePopup.style.display = 'none';
-      updateNowPlayingText();
-    });
-  
-    canvas.style.display = 'none';
-  </script>
+  <p class="small">More coming soon...</p>
+  <hr>
+  <p class="small">© 2026 Benjamin P. Stoker. All rights reserved.</p>
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>
     function showEmails() {
       const genUser = "contact";
       const storeUser = "store";
       const domain = "benpstoker.com";
-
       const genEmail = `${genUser}@${domain}`;
       const storeEmail = `${storeUser}@${domain}`;
-
       const genLink = document.getElementById("gen-email");
       const storeLink = document.getElementById("store-email");
-
       genLink.href = `mailto:${genEmail}`;
       genLink.textContent = genEmail;
-
       storeLink.href = `mailto:${storeEmail}`;
       storeLink.textContent = storeEmail;
-
-      document.getElementById('email-reveal').classList.remove('hidden');
-      document.getElementById('captcha-box').classList.add('hidden');
+      document.getElementById("email-reveal").style.display = "block";
+      document.getElementById("captcha-box").style.display = "none";
     }
   </script>
 </body>
