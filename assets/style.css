@@ -1,18 +1,18 @@
 body {
   margin: 0;
   padding: 40px 12vw;
-  background: #0b0f14;
-  color: #d6e2ff;
+  background: #0a0d12;
+  color: #f2f7ff;
   font-family: century-gothic, sans-serif;
   line-height: 1.6;
 }
 h1, h2 {
-  color: #4da3ff;
+  color: #66b3ff;
   font-weight: normal;
   margin-bottom: 10px;
 }
 a {
-  color: #4da3ff;
+  color: #66b3ff;
   text-decoration: none;
 }
 a:hover {
@@ -21,7 +21,7 @@ a:hover {
 .menu {
   position: sticky;
   top: 0;
-  background: #0b0f14;
+  background: #0a0d12;
   padding: 15px 0;
   border-bottom: 1px solid #1c2a3a;
   margin-bottom: 40px;
