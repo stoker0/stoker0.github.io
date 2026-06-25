@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /sites/
+Allow: /
 
 Sitemap: https://www.benpstoker.com/sitemap.xml
