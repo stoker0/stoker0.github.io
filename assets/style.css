@@ -1,9 +1,19 @@
+@font-face {
+    font-family: "Century Gothic";
+    src: url("centurygothic.ttf") format("truetype");
+    font-weight: 400;
+}
+@font-face {
+    font-family: "Century Gothic";
+    src: url("centurygothic_bold.ttf") format("truetype");
+    font-weight: 700;
+}
 body {
   margin: 0;
   padding: 40px 12vw;
   background: #0a0d12;
   color: #f2f7ff;
-  font-family: century-gothic, sans-serif;
+  font-family: "Century Gothic", sans-serif;
   line-height: 1.6;
 }
 h1, h2 {
