@@ -4,21 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - Page not found</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@200&display=swap">
+    <meta name="title" content="404 - Page not found"/>
+    <meta name="description" content="The page you're looking for can't be found."/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://www.benpstoker.com/404.html"/>
+    <meta property="og:title" content="404 - Page not found"/>
+    <meta property="og:description" content="The page you're looking for can't be found."/>
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://www.benpstoker.com/404.html"/>
+    <meta property="twitter:title" content="404 - Page not found"/>
+    <meta property="twitter:description" content="The page you're looking for can't be found."/>
+    <link rel="icon" type="image/png" href="assets/favicon-96x96.png" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+    <link rel="shortcut icon" href="assets/favicon.ico"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png"/>
+    <meta name="apple-mobile-web-app-title" content="Ben Stoker"/>
+    <meta name="theme-color" content="#0a0d12" media="(prefers-color-scheme: light)"/>
+    <meta name="theme-color" content="#0a0d12" media="(prefers-color-scheme: dark)"/>
+    <link rel="manifest" href="assets/site.webmanifest"/>
+    <meta name="robots" content="noindex">
     <style>
+        @font-face {
+            font-family: "Century Gothic";
+            src: url("assets/centurygothic.ttf") format("truetype");
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: "Century Gothic";
+            src: url("assets/centurygothic_bold.ttf") format("truetype");
+            font-weight: 700;
+        }
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         :root {
-            --background: #060608;
-            --color: #FAFAFA;
+            --background: #0a0d12;
+            --color: #f2f7ff;
         }
         html, body {
             width: 100%;
             height: 100%;
-            font-family: 'Inter', sans-serif;
+            font-family: "Century Gothic", sans-serif;
             background: var(--background);
             display: flex;
             justify-content: center;
@@ -35,8 +63,6 @@
             position: relative;
         }
         .stack span {
-            font-family: 'Inter', sans-serif;
-            font-weight: 200;
             grid-row-start: 1;
             grid-column-start: 1;
             font-size: 6rem;
@@ -84,11 +110,11 @@
             }
         }
         p {
-            font-family: 'Inter', sans-serif;
-            font-weight: 200;
-            font-size: 1.2rem;
-            margin-top: 10px;
-            opacity: 0.8;
+            color: #8aa4c7;
+            padding-top: 10px;
+        }
+        a {
+            color: #8aa4c7;
         }
         .logo-container {
             position: absolute;
@@ -112,6 +138,7 @@
             <span style="--stack-index: 4;">404</span>
         </div>
         <p>The page you're looking for can't be found.</p>
+        <p><a href="/">&larr; back to benpstoker.com</a></p>
     </div>
 </body>
 </html>
